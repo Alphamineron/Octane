@@ -3,13 +3,16 @@ from tqdm import tqdm
 
 
 def mapstruct(d, key, intend):
-    print("", "    " * intend, "|-", key)
+    print("", "    " * intend, "├", key)
 
-def foo(d, key):
-    if(isinstance(d[key], dict)):
-        for k in d[key].keys():
-            if(k == "type"):
-                print("Type Found: ", d[key]["type"])
+def foo(d, key = True):
+    if(key == "name"):
+        print("F: Name Found: ", d[key])
+
+    if(key == "type"):
+        print("F: Type Found: ", d[key], "\n")
+
+
 
 
 def digD(d, intend = 1, func = mapstruct):
@@ -32,10 +35,7 @@ def digL(l, intend, func = mapstruct, index = True):
         if(index == True and func == mapstruct):
             print("    " * intend, "--" + "[" + str(i+1) + "]")
         else:           # REMOVE THIS
-            for d in l:
-                for k in d.keys():
-                    if(k == "type"):
-                        print("Type Found: ", d["type"])
+            pass
 
 
         # Recursive Digging
@@ -46,10 +46,10 @@ def digL(l, intend, func = mapstruct, index = True):
 
 
 def main():
-    with open('chrome-exports/Bookmarks', 'r', encoding='utf8') as inf:
+    with open('chrome-exports/BookmarksC', 'r', encoding='utf8') as inf:
         workingData = json.load(inf)
         # Start Digging...
-        digD(workingData)
+        digD(workingData, func = foo)
 
 if __name__ == "__main__":
     main();
