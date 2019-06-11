@@ -2,6 +2,8 @@ from html.parser import HTMLParser
 import copy
 import codecs
 from tqdm import tqdm
+import argparse
+import sys
 
 class WebBookmark(object):
     def __init__(self):
@@ -67,27 +69,46 @@ class netscapeHTMLparser(HTMLParser):
 # ██      ██ ██      ███████ ███████ ██ ██   ████ ███████
 
 if __name__ == '__main__':
-    if(input("Would you like to compare a Buku Export file and Chrome Export File? (Y/N): ") == "Y"):
+    argparser = argparse.ArgumentParser(description="View basic details from a Netscape format Bookmarks File (Usually exported files from popular Browsers)")
+    group = argparser.add_mutually_exclusive_group()
+    group.add_argument("-i", "--input",
+                        help="Path of the Netscrape format HTML file",
+                        type=str)
+
+    argparser.add_argument("-c", "--compare",
+                            help="Compare Buku and Chrome exported bookmarks files. Requires [BukuFilePath] [ChromeFilePath]. Paths can be absolute or relative to %(prog)s",
+                            action="store_true")
+
+    argparser.add_argument("-b", "--buku",
+                            help="Buku's export file path",
+                            required=("--compare" in sys.argv),
+                            type=str,
+                            default="Dump/Data/BukuBookmarks.html")
+
+    argparser.add_argument("-ch", "--chrome",
+                            help="Chrome's export file path",
+                            required=("--compare" in sys.argv),
+                            type=str,
+                            default="Dump/Data/bookmarks_11_06_2019.html")
+
+    args = argparser.parse_args()
+
+
+    if args.compare:
 
         bukuPar = netscapeHTMLparser()
-
-        with codecs.open("Dump/Data/BukuBookmarks.html", 'r', 'utf-8') as fin:
+        with codecs.open(args.buku, 'r', 'utf-8') as fin:
             str = fin.read()
-
         bukuPar.feed(str)
-
         print("Buku Objects Parsed: ", bukuPar.count)   # Buku Objects Parsed: 1305
         # for bookmark in bukuPar.bookmarks:
         #     bookmark.show()
 
 
         BPar = netscapeHTMLparser()
-
-        with codecs.open("Dump/Data/bookmarks_11_06_2019.html", 'r', 'utf-8') as fin:
+        with codecs.open(args.chrome, 'r', 'utf-8') as fin:
             str = fin.read()
-
         BPar.feed(str)
-
         print("Chrome Objects Parsed: ", BPar.count)    # Chrome Objects Parsed: 1314
 
 
@@ -105,4 +126,10 @@ if __name__ == '__main__':
         print("\n>>> Scan Completed!")  # Somehow, Chrome is exporting duplicates,
                                         # as the extraBM list is empty in the end...
     else:
-        print("\nNo other functionality implemented yet... Exiting")
+        parser = netscapeHTMLparser()
+        with codecs.open(args.input, 'r', 'utf-8') as fin:
+            str = fin.read()
+        parser.feed(str)
+        print("Objects Parsed: ", parser.count)   # Buku Objects Parsed: 1305
+        for bookmark in parser.bookmarks:
+            bookmark.show()
