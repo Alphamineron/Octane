@@ -101,9 +101,6 @@ if __name__ == '__main__':
             str = fin.read()
         bukuPar.feed(str)
         print("Buku Objects Parsed: ", bukuPar.count)   # Buku Objects Parsed: 1305
-        # for bookmark in bukuPar.bookmarks:
-        #     bookmark.show()
-
 
         BPar = netscapeHTMLparser()
         with codecs.open(args.chrome, 'r', 'utf-8') as fin:
@@ -113,18 +110,66 @@ if __name__ == '__main__':
 
 
         extraBM = []
+        duplicateBM = []
 
-        for b1 in tqdm(BPar.bookmarks):
+        if BPar.count > bukuPar.count:
+            big = BPar
+            small = bukuPar
+        else:
+            big = bukuPar
+            small = BPar
+
+        print("\nFinding extra items in larger list:")
+        for b1 in tqdm(big.bookmarks):
             found = False
-            for b2 in tqdm(bukuPar.bookmarks):
+            for b2 in tqdm(small.bookmarks):
                 if (b1.url == b2.url):
                     found = True
+
             if found is False:
                 print("Extra Found!")
                 extraBM.append(copy.deepcopy(b1))
 
-        print("\n>>> Scan Completed!")  # Somehow, Chrome is exporting duplicates,
+        print("\n\nFinding duplicate items in larger list considering smaller list:")
+        for b1 in tqdm(small.bookmarks):
+            f_count = 0
+            duplicates = 0
+            for b2 in tqdm(big.bookmarks):
+                if (b1.url == b2.url):  f_count += 1
+
+                if f_count > 1:
+                    f_count -= 1
+                    duplicates += 1
+                    big.bookmarks.remove(b2)
+
+            if duplicates is not 0:
+                duplicateBM.append([copy.deepcopy(b1), duplicates])
+
+        print("\n\n>>> Scan Completed!")  # Somehow, Chrome is exporting duplicates,
                                         # as the extraBM list is empty in the end...
+        print("\n\t\t ===> Scan Stats <====")
+        print("Bigger List Length: ", len(big.bookmarks))
+        print("Smaller List Length: ", len(small.bookmarks))
+        print("\n Bigger List:")
+        print("No. of Extras Found:", len(extraBM))
+        if len(extraBM) is not 0:
+            print("Extra Bookmarks:")
+            for bm in extraBM:
+                bm.show()
+
+        print("No. of Duplicate Bookmarks Found:", len(duplicateBM))
+
+        ch = input("Show recurring Bookmarks? (Y/N): ")
+
+        if ch is "Y" or ch is "y":
+            if len(duplicateBM) is not 0:
+                print("Duplicate Bookmarks:")
+                for bm in duplicateBM:
+                    print("\n=======================================")
+                    print(bm[0].name + "\nReplicates Found = ", bm[1], "\n|\t" + bm[0].url)
+
+
+
     else:
         parser = netscapeHTMLparser()
         with codecs.open(args.input, 'r', 'utf-8') as fin:
