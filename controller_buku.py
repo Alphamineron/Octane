@@ -10,7 +10,7 @@ PROJECT_NAME = "BMM"
 # EXPORT_FILE_PATH = "./temp/bukuExport.html"
 # ERASE_BEFORE_INIT = False
 
-def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/bukuExport.html"):
+def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/browserExport.html"):
     try:
         output = check_output(["buku", "-v"], stderr=PIPE)   # Avoid using shell=True for security issues, however it's safe for use here though, cause no user input is used.
         if output:  output = output.decode("ascii").strip()

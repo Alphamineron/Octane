@@ -1,9 +1,5 @@
 from html.parser import HTMLParser
 import copy
-import codecs
-from tqdm import tqdm
-import argparse
-import sys
 
 from dataChip import Primitive_Bookmark as WebBookmark
 
@@ -73,6 +69,11 @@ class netscapeHTMLparser(HTMLParser):
 # ██      ██ ██      ███████ ███████ ██ ██   ████ ███████
 
 if __name__ == '__main__':
+    import codecs
+    from tqdm import tqdm
+    import argparse
+    import sys
+    
     argparser = argparse.ArgumentParser(description="View basic details from a Netscape format Bookmarks File (Usually exported files from popular Browsers)")
     group = argparser.add_mutually_exclusive_group()
     group.add_argument("-i", "--input",

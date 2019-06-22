@@ -1,22 +1,25 @@
 import codecs
 import os
 
-import MediumParser as MP
-import netscapeHTMLparser as NP
+import parser_Medium as MP
+import parser_netscapeHTML as NP
+import controller_buku
 
 EXPORT_FILE_PATH = "./temp/browserExport.html"
 DIRECTORY_IN_STR = "Dump/Data/medium-export/bookmarks/"
 
 
 def GET_BrowserExports():
+    controller_buku.run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = EXPORT_FILE_PATH)
+
     parser = NP.netscapeHTMLparser()
     with codecs.open(EXPORT_FILE_PATH, 'r', 'utf-8') as fin:
         str = fin.read()
     parser.feed(str)
-
     # return parser.bookmarks, parser.count
-    for bookmark in parser.bookmarks:
-        bookmark.show()
+    # for bookmark in parser.bookmarks:
+        # bookmark.show()
+
 
 def GET_MediumExports():
     parser = MP.MediumParser()
@@ -42,4 +45,5 @@ def GET_MediumExports():
     # for bookmark in parser.bookmarks:
     #     bookmark.show()
 if __name__ == '__main__':
+    GET_BrowserExports()
     GET_MediumExports()
