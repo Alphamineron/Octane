@@ -5,19 +5,23 @@ from tqdm import tqdm
 import argparse
 import sys
 
-class WebBookmark(object):
-    def __init__(self):
-        self.name = ""
-        self.url = ""
+from dataChip import Primitive_Bookmark as WebBookmark
 
-    def show(self):
-        str = self.name + "\n|\t" + self.url
-        print("\n=======================================")
-        print(str)
-
-    def flush(self):
-        self.name = ""
-        self.url = ""
+# class WebBookmark(object):
+#     def __init__(self):
+#         self.name = ""
+#         self.url = ""
+#         self.time = ""
+#
+#     def show(self):
+#         str = self.name + "\n|\t" + self.url
+#         print("\n=======================================")
+#         print(str)
+#
+#     def flush(self):
+#         self.name = ""
+#         self.url = ""
+#         self.time = ""
 
 class netscapeHTMLparser(HTMLParser):
     mdm = WebBookmark()  # For Internal Use Only
@@ -75,7 +79,7 @@ if __name__ == '__main__':
                         help="Path of the Netscrape format HTML file",
                         type=str)
 
-    argparser.add_argument("-c", "--compare",
+    group.add_argument("-c", "--compare",
                             help="Compare Buku and Chrome exported bookmarks files. Requires [BukuFilePath] [ChromeFilePath]. Paths can be absolute or relative to %(prog)s",
                             action="store_true")
 
@@ -163,10 +167,10 @@ if __name__ == '__main__':
 
         if ch is "Y" or ch is "y":
             if len(duplicateBM) is not 0:
-                print("Duplicate Bookmarks:")
+                print("\nDuplicate Bookmarks:\n")
                 for bm in duplicateBM:
-                    print("\n=======================================")
                     print(bm[0].name + "\nReplicates Found = ", bm[1], "\n|\t" + bm[0].url)
+                    print("\n=======================================")
 
 
 

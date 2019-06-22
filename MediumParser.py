@@ -2,24 +2,26 @@ from html.parser import HTMLParser
 import copy
 import codecs
 
+from dataChip import Primitive_Bookmark as MediumBookmark
+
 A_CLASS = "h-cite"
 TIME_CLASS = "dt-published"
 
-class MediumBookmark(object):
-    def __init__(self):
-        self.name = ""
-        self.url = ""
-        self.time = ""
-
-    def show(self):
-        str = self.name + "\n| " + self.time + "\n\t" + self.url
-        print("\n=======================================")
-        print(str)
-
-    def flush(self):
-        self.name = ""
-        self.url = ""
-        self.time = ""
+# class MediumBookmark(object):
+#     def __init__(self):
+#         self.name = ""
+#         self.url = ""
+#         self.time = ""
+#
+#     def show(self):
+#         str = self.name + "\n| " + self.time + "\n\t" + self.url
+#         print("\n=======================================")
+#         print(str)
+#
+#     def flush(self):
+#         self.name = ""
+#         self.url = ""
+#         self.time = ""
 
 class MediumParser(HTMLParser):
     mdm = MediumBookmark()  # For Internal Use Only
