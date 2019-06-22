@@ -2,3 +2,5 @@
 .ropeproject/
 Dump/
 .vscode/
+temp/
+__pycache__/

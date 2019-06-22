@@ -1,0 +1,45 @@
+import subprocess
+from subprocess import PIPE, DEVNULL, check_output, call
+import sys
+import os
+import colorama
+
+from utils.spinner import Spinner
+
+PROJECT_NAME = "BMM"
+# EXPORT_FILE_PATH = "./temp/bukuExport.html"
+# ERASE_BEFORE_INIT = False
+
+def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/bukuExport.html"):
+    try:
+        output = check_output(["buku", "-v"], stderr=PIPE)   # Avoid using shell=True for security issues, however it's safe for use here though, cause no user input is used.
+        if output:  output = output.decode("ascii").strip()
+        print("Buku version("+output+") Detected!")
+
+
+        if(ERASE_BEFORE_INIT == True):
+            print("\n Erasing Buku Database before Export Initialization")
+            call("expect ./bukuOps/bukuErase.sh", shell=True)
+
+
+        sys.stdout.write("\n> Auto-Importing bookmarks from all available browsers: ")
+        with Spinner():
+            call("expect ./bukuOps/bukuAI.sh", shell=True, stdout=DEVNULL)
+
+
+        if os.path.exists(EXPORT_FILE_PATH):
+            os.remove(EXPORT_FILE_PATH)
+        out = check_output(["buku", "-e", EXPORT_FILE_PATH])
+        if out: out = out.decode("ascii").strip()
+        print("\n\t Buku Status:", out)
+
+
+    except subprocess.CalledProcessError as e:
+        print("\'Buku\' Not Found!")
+        print("BMM uses Buku as a temporary backend tool for interacting with your browser...")
+        print("Please install Buku through: https://github.com/jarun/Buku")
+
+
+
+if __name__ == '__main__':
+    run()

@@ -1,0 +1,15 @@
+beautifulsoup4>=4.4.1
+certifi
+cryptography>=1.2.3
+html5lib>=1.0.1
+setuptools
+urllib3>=1.23
+colorama>=0.3.3
+
+# Colorama Download Instructions:
+# Download .tar.gz package for colorama from https://pypi.python.org/packages/source/c/colorama/colorama-0.3.3.tar.gz
+#   cd colorama*
+#   python setup.py install
+
+# Temporary Backend Requirement
+buku>=4.2.2
