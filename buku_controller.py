@@ -42,4 +42,7 @@ def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/bukuExport.html"):
 
 
 if __name__ == '__main__':
+    colorama.init(autoreset = True)
+    print(colorama.Fore.WHITE + colorama.Back.RED + 'Warning! This script is to be run internally by ' + PROJECT_NAME + ' scripts, direct use might lead to unexpected behaviour\n')
+    # print('\x1b[6;37;41m' +  + '\x1b[0m' + '\n')
     run()
