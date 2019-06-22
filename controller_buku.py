@@ -32,12 +32,13 @@ def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/browserExport.html
         out = check_output(["buku", "-e", EXPORT_FILE_PATH])
         if out: out = out.decode("ascii").strip()
         print("\n\t Buku Status:", out)
+        print("\n")
 
 
     except subprocess.CalledProcessError as e:
         print("\'Buku\' Not Found!")
         print("BMM uses Buku as a temporary backend tool for interacting with your browser...")
-        print("Please install Buku through: https://github.com/jarun/Buku")
+        print("Please install Buku through: https://github.com/jarun/Buku\n")
 
 
 
