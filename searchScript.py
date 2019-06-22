@@ -46,7 +46,7 @@ def digL(l, intend, func = mapstruct, index = True):
 
 
 def main():
-    with open('chrome-exports/BookmarksC', 'r', encoding='utf8') as inf:
+    with open('Dump/Data/chrome-exports/BookmarksC', 'r', encoding='utf8') as inf:
         workingData = json.load(inf)
         # Start Digging...
         digD(workingData, func = foo)
