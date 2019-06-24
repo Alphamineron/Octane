@@ -51,6 +51,13 @@ def fetch_dataset(DATASET_URL = DATASET_URL):
 
     return dataset
 
+def sync_dataset(DATASET_URL = DATASET_URL):
+    sys.stdout.write("\n> Syncing files at: https://data.world/" + DATASET_URL + " -> ")
+    with Spinner():
+        api_client = dw.api_client()
+        api_client.sync_files(DATASET_URL)
+        print("\n")
+
 def pd_clean_col(mediumDF):
     """
         Removes dublicate columns such as bookmarkedat, posturl, posttitle.
@@ -65,13 +72,14 @@ def pd_clean_col(mediumDF):
     return mediumDF
 
 def main():
+    sync_dataset()
+
     dataset = fetch_dataset()
     mediumDF = dataset.dataframes["medium_bookmarks"]
     mediumDF = pd_clean_col(mediumDF)
 
     # print(mediumDF.shape)
     print("\n", mediumDF)
-
 
 
 
