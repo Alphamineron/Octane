@@ -1,6 +1,13 @@
 .DS_Store
 .ropeproject/
-Dump/
 .vscode/
-temp/
 __pycache__/
+
+# Ignore Discarded/Archived Files
+Dump/
+
+# Ignore Temporary Output Files
+temp/
+
+# Ignore Experimental Code
+Experimental/
