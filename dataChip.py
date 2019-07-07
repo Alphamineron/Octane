@@ -59,8 +59,6 @@ class TodoSection(object):
 """
     ID : Unique ID of the Chip Object
     img : Web Scraped image related to the chip, extacted from the url
-
-
 """
 
 class Chip(Primitive_Bookmark):
@@ -75,6 +73,7 @@ class Chip(Primitive_Bookmark):
         self.img = None         # LFS
         self.cache = None       # LFS
         self.TodoList = []   # List of TodoSections Objects IDs
+        self.starred = False
 
         self.source = []        # Is it from Medium? Is it from Youtube
         self.kind = []          # Is this a video, article, or image? What kind of content this represents
@@ -92,12 +91,8 @@ class Chip(Primitive_Bookmark):
         self.url = p_bm.url
         self.time = p_bm.time
 
-    @staticmethod
-    def iterChip(*chipObjs):
-        for chip in chipObjs:
-            yield chip
 
-def test_initPrimitiveBookmarks(limit):
+def iterPrimitiveBookmarks(limit):
     for i in range(limit):
         p_bm = Primitive_Bookmark()
         p_bm.name = "Test_" + str(i)
@@ -105,34 +100,44 @@ def test_initPrimitiveBookmarks(limit):
         p_bm.time = "DateTimeObject_" + str(i)
         yield p_bm
 
-def main():
+def test_initPrimitiveBookmarks(limit, show=False):
+    try:
+        for p_bm in iterPrimitiveBookmarks(limit):
+            chip = Chip()
+            chip.inherit(p_bm)
+            if show:
+                chip.show()
 
-    for p_bm in test_initPrimitiveBookmarks(1000):
-        chip = Chip()
-        chip.inherit(p_bm)
-        chip.show()
+        print("initPBm - Initialization of "+ str(limit) +" chips: True")
+    except Exception as e:
+        print("Error encountered in test_initPrimitiveBookmarks()")
+
+def main():
+    test_initPrimitiveBookmarks(10000)
+
+
 
 
 
 if __name__ == '__main__':
-    import msgpack
-
-    # Define data
-    data = {'a list': [1, 42, 3.141, 1337, 'help'],
-            'a string': 'bla',
-            'another dict': {'foo': 'bar',
-                             'key': 'value',
-                             'the answer': 42}}
-
-    # Write msgpack file
-    with open('data.msgpack', 'wb') as outfile:
-        msgpack.packb(data, outfile)
-
-    # Read msgpack file
-    with open('data.msgpack', "rb") as data_file:
-        # data_loaded = json.load(data_file)
-        data_loaded = msgpack.unpack(data_file)
-
-    print(data)
-    print(data_loaded)
-    # main()
+    # import msgpack
+    #
+    # # Define data
+    # data = {'a list': [1, 42, 3.141, 1337, 'help'],
+    #         'a string': 'bla',
+    #         'another dict': {'foo': 'bar',
+    #                          'key': 'value',
+    #                          'the answer': 42}}
+    #
+    # # Write msgpack file
+    # with open('data.msgpack', 'wb') as outfile:
+    #     msgpack.packb(data, outfile)
+    #
+    # # Read msgpack file
+    # with open('data.msgpack', "rb") as data_file:
+    #     # data_loaded = json.load(data_file)
+    #     data_loaded = msgpack.unpack(data_file)
+    #
+    # print(data)
+    # print(data_loaded)
+    main()
