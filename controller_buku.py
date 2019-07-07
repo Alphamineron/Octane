@@ -10,11 +10,11 @@ PROJECT_NAME = "BMM"
 # EXPORT_FILE_PATH = "./temp/bukuExport.html"
 # ERASE_BEFORE_INIT = False
 
-def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/browserExport.html"):
+def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/browserExport.html", mute = False):
     try:
         output = check_output(["buku", "-v"], stderr=PIPE)   # Avoid using shell=True for security issues, however it's safe for use here though, cause no user input is used.
         if output:  output = output.decode("ascii").strip()
-        print("Buku version("+output+") Detected!")
+        if not mute: print("Buku version("+output+") Detected!")
 
 
         if(ERASE_BEFORE_INIT == True):
@@ -22,17 +22,21 @@ def run(ERASE_BEFORE_INIT = False, EXPORT_FILE_PATH = "./temp/browserExport.html
             call("expect ./bukuOps/bukuErase.sh", shell=True)
 
 
-        sys.stdout.write("\n> Auto-Importing bookmarks from all available browsers: ")
-        with Spinner():
-            call("expect ./bukuOps/bukuAI.sh", shell=True, stdout=DEVNULL)
+        if not mute:
+            sys.stdout.write("\n> Auto-Importing bookmarks from all available browsers: ")
+            with Spinner():
+                call("expect ./bukuOps/bukuAI.sh", shell=True, stdout=DEVNULL)
+        else: call("expect ./bukuOps/bukuAI.sh", shell=True, stdout=DEVNULL)
 
 
         if os.path.exists(EXPORT_FILE_PATH):
             os.remove(EXPORT_FILE_PATH)
         out = check_output(["buku", "-e", EXPORT_FILE_PATH])
         if out: out = out.decode("ascii").strip()
-        print("\n\t Buku Status:", out)
-        print("\n")
+
+        if not mute:
+            print("\n\t Buku Status:", out)
+            print("\n")
 
 
     except subprocess.CalledProcessError as e:
