@@ -108,36 +108,11 @@ def test_initPrimitiveBookmarks(limit, show=False):
             if show:
                 chip.show()
 
-        print("initPBm - Initialization of "+ str(limit) +" chips: True")
+        print("Testing Chip.inherit()")
+        print("Initialization of "+ str(limit) +" chips: True")
     except Exception as e:
         print("Error encountered in test_initPrimitiveBookmarks()")
 
-def main():
-    test_initPrimitiveBookmarks(10000)
-
-
-
-
 
 if __name__ == '__main__':
-    # import msgpack
-    #
-    # # Define data
-    # data = {'a list': [1, 42, 3.141, 1337, 'help'],
-    #         'a string': 'bla',
-    #         'another dict': {'foo': 'bar',
-    #                          'key': 'value',
-    #                          'the answer': 42}}
-    #
-    # # Write msgpack file
-    # with open('data.msgpack', 'wb') as outfile:
-    #     msgpack.packb(data, outfile)
-    #
-    # # Read msgpack file
-    # with open('data.msgpack', "rb") as data_file:
-    #     # data_loaded = json.load(data_file)
-    #     data_loaded = msgpack.unpack(data_file)
-    #
-    # print(data)
-    # print(data_loaded)
-    main()
+    test_initPrimitiveBookmarks(10000)
