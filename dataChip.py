@@ -92,7 +92,7 @@ class Chip(Primitive_Bookmark):
         self.time = p_bm.time
 
 
-def iterPrimitiveBookmarks(limit):
+def generatePrimitiveBookmarks(limit):
     for i in range(limit):
         p_bm = Primitive_Bookmark()
         p_bm.name = "Test_" + str(i)
@@ -100,9 +100,9 @@ def iterPrimitiveBookmarks(limit):
         p_bm.time = "DateTimeObject_" + str(i)
         yield p_bm
 
-def test_initPrimitiveBookmarks(limit, show=False):
+def test_inherit(limit, show=False):
     try:
-        for p_bm in iterPrimitiveBookmarks(limit):
+        for p_bm in generatePrimitiveBookmarks(limit):
             chip = Chip()
             chip.inherit(p_bm)
             if show:
@@ -115,4 +115,4 @@ def test_initPrimitiveBookmarks(limit, show=False):
 
 
 if __name__ == '__main__':
-    test_initPrimitiveBookmarks(10000)
+    test_inherit(10000)
