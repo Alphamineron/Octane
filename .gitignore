@@ -6,6 +6,9 @@ __pycache__/
 # Ignore Discarded/Archived Files
 Dump/
 
+# Ignore Personal Info Files
+data/
+
 # Ignore Temporary Output Files
 temp/
 

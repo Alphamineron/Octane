@@ -1,10 +1,11 @@
+import sys
 import codecs
 import os
-import sys
 
 import parser_Medium as MP
 import parser_netscapeHTML as NP
 import controller_buku
+
 from utils.spinner import Spinner
 
 BROWSER_EXPORT_FILE = "./temp/browserExport.html"
@@ -41,9 +42,18 @@ def GET_MediumExports(dirString = MEDIUM_DIR, mute = True):
     if not mute: print("\n\t Medium Bookmarks:", parser.count, "exported")
     return parser.bookmarks, parser.count
 
-if __name__ == '__main__':
+def generateImports():
+    """
+        Generator for iterating through combined exports from browsers and medium files
+
+        Yields:
+        `dataChip.Primitive_Bookmark`
+    """
     sys.stdout.write("\n> Auto-Importing bookmarks: ")   # TODO: Add the config setup check before this for paths
     with Spinner():
         b_1, c_1 = GET_BrowserExports()
         b_2, c_2 = GET_MediumExports()
     print(c_1 + c_2, "objects imported")
+
+    b_1.extend(b_2)
+    yield from b_1
