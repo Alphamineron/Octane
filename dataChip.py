@@ -1,4 +1,7 @@
 from colorama import init, Fore
+import colorama
+
+PROJECT_NAME = "BMM"
 
 class Primitive_Bookmark(object):
     def __init__(self):
@@ -115,4 +118,6 @@ def test_inherit(limit, show=False):
 
 
 if __name__ == '__main__':
+    colorama.init(autoreset = True)
+    print(colorama.Fore.WHITE + colorama.Back.RED + 'Warning! This script is to be run internally by ' + PROJECT_NAME + ' scripts, direct use might lead to unexpected behaviour\n')
     test_inherit(10000)
