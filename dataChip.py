@@ -1,7 +1,4 @@
 import uuid
-import json
-
-from ChipOps.dfh import *
 
 from colorama import init, Fore
 import colorama
@@ -122,12 +119,6 @@ def test_serialize(limit, show=False):
 
     except Exception as e:
         print("Error encountered in test_serialize()")
-
-def test_(limit):
-    with open("data/chips.json", "w") as fout:
-        for pbm in generatePrimitiveBookmarks(limit):
-            chip = Chip(pbm)
-            json.dump(chip, fout, default=JSON.encoder)
 
 
 class UseCase(object):
