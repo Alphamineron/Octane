@@ -45,6 +45,18 @@ def loadObjects(filename):
             except EOFError:
                 break
 
+class JSON(object):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def encoder(self, obj):
+        """
+            Usage: `json.dumps(obj, default=JSON.encoder)`
+        """
+        if isinstance(obj, Chip):
+            return obj.serialize()
+        raise TypeError(repr(obj) + " is not JSON serializable")
 
 
 if __name__ == '__main__':
