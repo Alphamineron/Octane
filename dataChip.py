@@ -1,3 +1,4 @@
+import copy
 import uuid
 
 from colorama import init, Fore
@@ -12,6 +13,7 @@ class Primitive_Bookmark(object):
         self.name = ""
         self.url = ""
         self.time = ""
+        self.source = []        # Is it from Medium? Is it from Youtube
 
     def show(self):
         init(autoreset = True)
@@ -25,6 +27,7 @@ class Primitive_Bookmark(object):
         self.name = ""
         self.url = ""
         self.time = ""
+        self.source = []
 
 
 class Chip(Primitive_Bookmark):
@@ -45,7 +48,6 @@ class Chip(Primitive_Bookmark):
         self.starred = False
 
         self.tags = []          # List of Strings
-        self.source = []        # Is it from Medium? Is it from Youtube
         self.kind = []          # Is this a video, article, or image? What kind of content this represents
         self.useCases = []      # List of UseCase Objects IDs
         self.topics = []        # List of Topics that the Chip's contents fall into
@@ -59,6 +61,7 @@ class Chip(Primitive_Bookmark):
         self.name = p_bm.name
         self.url = p_bm.url
         self.time = p_bm.time
+        self.source = copy.deepcopy(p_bm.source)
 
     def serialize(self):
         return  {

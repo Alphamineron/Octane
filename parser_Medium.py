@@ -48,6 +48,7 @@ class MediumParser(HTMLParser):
     # @Override
     def handle_endtag(self, tag):
         if(tag == "li"):  # </li> marks the end of a Medium Bookmark in the HTML file
+            MediumParser.mdm.source.append("Medium")   # TODO: REMOVE THIS HACK (Only This Line)
             self.bookmarks.append(copy.deepcopy(MediumParser.mdm))   # DEEPCOPY required
             self.count += 1                       # to append a separated entry into the
             MediumParser.mdm.flush()             # list, so refs aren't appended instead
