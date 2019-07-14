@@ -10,6 +10,7 @@ import json
 from dataChip import Chip, generatePrimitiveBookmarks
 import importer
 
+from utils.spinner import Spinner
 import colorama
 import pprint
 
@@ -20,14 +21,11 @@ CHIPS_JSON = "data/chips.json"
 
 def generateChips(limit):
     for pbm in generatePrimitiveBookmarks(limit):
-        chip = Chip(pbm)
-        yield chip
+        yield Chip(pbm)
 
 def generateChipsfromImport():
     for p_bm in importer.generateImports():
-        chip = Chip()
-        chip.inherit(p_bm)
-        yield chip
+        yield Chip(p_bm)
 
 #===============================================================================
 
@@ -112,3 +110,5 @@ if __name__ == '__main__':
 
     # pp = pprint.PrettyPrinter(indent=4)
     # pp.pprint(JSON.loadObjects(CHIPS_JSON))
+    with Spinner():
+        print("\n1st-Indent Objects loaded: ", len(JSON.loadObjects(CHIPS_JSON)))
