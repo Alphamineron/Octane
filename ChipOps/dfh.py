@@ -14,9 +14,8 @@ from utils.spinner import Spinner
 import colorama
 import pprint
 
-PROJECT_NAME = "BMM"
-CHIPS_BIN = "data/chips.bin"
-CHIPS_JSON = "data/chips.json"
+# Fetching Defined Project-Scoped Config Constants
+from config import PROJECT_NAME, CHIPS_BIN, CHIPS_JSON
 
 
 def generateChips(limit):

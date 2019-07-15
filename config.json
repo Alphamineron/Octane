@@ -1,0 +1,9 @@
+{
+    "PROJECT_NAME": "BMM",
+    "CHIPS_BIN": "data/chips.bin",
+    "CHIPS_JSON": "data/chips.json",
+    "BROWSER_EXPORT_FILE": "./temp/browserExport.html",
+    "MEDIUM_DIR": "Dump/Data/medium-export/bookmarks/",
+    "DATASET_URL": "alphamineron/medium-bookmarks",
+    "USERCODE": "0000"
+}

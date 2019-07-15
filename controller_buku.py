@@ -6,7 +6,9 @@ import colorama
 
 from utils.spinner import Spinner
 
-PROJECT_NAME = "BMM"
+# Fetching Defined Project-Scoped Config Constants
+from config import PROJECT_NAME
+
 # EXPORT_FILE_PATH = "./temp/bukuExport.html"
 # ERASE_BEFORE_INIT = False
 

@@ -13,7 +13,8 @@ import pandas as pd
 import datadotworld as dw
 
 
-DATASET_URL = "alphamineron/medium-bookmarks"
+# Fetching Defined Project-Scoped Config Constants
+from config import DATASET_URL
 
 
 def fetch_dataset(DATASET_URL = DATASET_URL):

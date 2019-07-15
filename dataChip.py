@@ -5,8 +5,8 @@ from colorama import init, Fore
 import colorama
 import pprint
 
-USERCODE = "0000"
-PROJECT_NAME = "BMM"
+# Fetching Defined Project-Scoped Config Constants
+from config import PROJECT_NAME, USERCODE
 
 class Primitive_Bookmark(object):
     def __init__(self):

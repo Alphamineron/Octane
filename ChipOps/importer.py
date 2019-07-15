@@ -8,8 +8,8 @@ import controller_buku
 
 from utils.spinner import Spinner
 
-BROWSER_EXPORT_FILE = "./temp/browserExport.html"
-MEDIUM_DIR = "Dump/Data/medium-export/bookmarks/"
+# Fetching Defined Project-Scoped Config Constants
+from config import BROWSER_EXPORT_FILE, MEDIUM_DIR
 
 
 def GET_BrowserExports(exportFile = BROWSER_EXPORT_FILE, mute = True):
