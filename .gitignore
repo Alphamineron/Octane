@@ -2,6 +2,7 @@
 .ropeproject/
 .vscode/
 __pycache__/
+FrontEnd/node_modules/
 
 # Ignore Discarded/Archived Files
 Dump/

@@ -1,0 +1,43 @@
+/* HTML USAGE:
+    <div class="search-bar">
+        <div class="underline-textfield">
+            <span class="underline-textfield" contenteditable placeholder="Click me to type!"></span>
+        </div>
+    </div>
+ */
+
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+
+div.search-bar {
+    margin: 0.2rem 0.4rem;
+    font-family: Lato;
+    font-size: 1.3rem;
+    background: #242424;
+    height: 100px;
+    padding: 0.5em 1em;
+}
+
+div.underline-textfield {
+    padding: 0.4rem 0;
+    border-bottom: 4px solid #383838;
+    width: 90vw;
+}
+
+.underline-textfield {
+    position: relative;
+    bottom: -11px;
+    color: white;
+    display: inline-block;
+    padding: 0.4rem 0;
+    border-bottom: 4px solid #D5BA5E;
+    outline: 0;
+}
+.underline-textfield:empty {
+    border-color: transparent;
+    width: 100%;
+}
+.underline-textfield:empty::before {
+    content: attr(placeholder);
+    opacity: 0.5;
+}

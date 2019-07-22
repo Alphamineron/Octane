@@ -1,6 +1,18 @@
+<div style="text-align:center">
+<img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
+
+![status-wip](https://img.shields.io/badge/Status-Work%20in%20Progress-red.svg)
+</div>
+
+#### In Progress Tasks
+1. Remove Buku code and use a custom lighter Bookmarks parser.
+2. Server and Frontend Implementation to interact with the data.
+3. Implementing searching
+
+
 # Installation
 
-## Data.World and IFTTT Integration
+## Data.World and IFTTT Integration (Optional)
 This integration is used to fetch recently bookmarked articles from Medium and add them into local dataset.
 > This is currently a temporary measure as the Medium API is too limited for such tasks.
 
@@ -39,3 +51,10 @@ it should show up as a `*.jsonl` file in your dataset.
     - You can either run `dw configure` on your terminal and paste the API Token
     - Alternatively, tokens can be provided via the DW_AUTH_TOKEN environment variable. On MacOS or Unix machines, run (replacing \<YOUR_TOKEN> below with the token obtained earlier): <br>
     `export DW_AUTH_TOKEN=<YOUR_TOKEN>`
+
+# Concepts used
+* [Object-relational mapping](https://stackoverflow.com/a/1152323/7800641) to add flexibility in the data handling.
+
+
+---
+<sup>Icon used: <a href="https://icons8.com/icon/44780/book-shelf">Book Shelf icon by Icons8</a></sup>

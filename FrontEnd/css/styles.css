@@ -1,0 +1,31 @@
+/* This is used to import font directly from a source like google fonts */
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
+@import url("https://fonts.googleapis.com/css?family=Advent+Pro&display=swap");
+
+/* This is used to import font from local file system, usually from files like .woff */
+@font-face {
+	font-family: "Booter - Zero Zero";
+	src: url("res/fonts/Booter - Zero Zero.woff") format("woff"),
+		url("res/fonts/Booter - Zero Zero.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: Raleway;
+	color: black;
+}
+
+/* ================================================================================== */
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	/* padding: 0 1.5em; */
+}
+
+.item {
+	/* border: 1px solid black; */
+	background-color: red;
+}
