@@ -7,6 +7,7 @@
 #### In Progress Tasks
 1. Remove Buku code and use a custom lighter Bookmarks parser.
 2. Server and Frontend Implementation to interact with the data.
+    1. Implement Pre-Building of Search Index using node.js for better client performance.
 3. Implementing searching
 
 
