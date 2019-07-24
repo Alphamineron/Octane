@@ -12,6 +12,7 @@ else ready();
 let chips = [];
 let recentSearches = [];
 let idx;
+let fuse;
 
 function ready() {
 	const endpoint = "../../data/chips.json";
@@ -28,7 +29,8 @@ function ready() {
 
 
 function main() {
-	initSearch()
+    // buildIndex()
+    build_fuseOptions()
 	// Sticking Event Listeners
 	const searchInput = document.querySelector('.search-input');
 	searchInput.addEventListener("keyup", (event) => {   // if enter/return is pressed
@@ -40,16 +42,6 @@ function main() {
 }
 
 // ===============================< Search >====================================
-
-function initSearch() {
-	idx = lunr(function () {
-					this.ref('ID');
-					this.field('name', { boost: 10 });
-					this.field('url');
-
-					chips.forEach(function (doc) { this.add(doc) }, this);
-				});
-}
 
 function getSearchQuery() {
 	return document.querySelector('.search-input').value;
@@ -86,6 +78,23 @@ function renderSearchResults(resultChips) {
 }
 
 function handleSearch(event) {
+    // lunrSearch();
+    fuseSearch();
+}
+
+// ===============================< Libraries >=================================
+
+function build_lunrIndex() {
+	idx = lunr(function () {
+					this.ref('ID');
+					this.field('name', { boost: 10 });
+					this.field('url');
+
+					chips.forEach(function (doc) { this.add(doc) }, this);
+				});
+}
+
+function lunrSearch() {
 	const searchInput = document.querySelector('.search-input');
 	const query = searchInput.value;	// Fetch the Search Query
 
@@ -94,7 +103,6 @@ function handleSearch(event) {
 
 
 	var results = idx.search(query);	// Perform Search Operation on index
-    console.log(results.length);
 	var resultChips = [];
 	results.forEach(function(result) {	 // Fetch complete info on Search Results
 								chips.forEach(function(chip) {
@@ -106,7 +114,33 @@ function handleSearch(event) {
 
 
 	renderSearchResults(resultChips);
-
-	console.log("query:", query);
+    console.log("query:", query, results.length);
 	// alert(resultChips);
+}
+
+function build_fuseOptions() {
+    var options = {
+                shouldSort: true,
+                tokenize: true,
+                // includeScore: true,
+                keys: [{
+                    name: 'url',
+                    weight: 0.1
+                }, {
+                    name: 'name',
+                    weight: 0.9
+                }]
+    };
+    fuse = new Fuse(chips, options)
+}
+
+function fuseSearch() {
+    const searchInput = document.querySelector('.search-input');
+    const query = searchInput.value;	// Fetch the Search Query
+    document.getElementsByClassName("search-results")[0].innerHTML = '';  // Clear Previous Search Results
+
+    var result = fuse.search(query)
+
+    renderSearchResults(result);
+    console.log("query:", query, result.length);
 }
