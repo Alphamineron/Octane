@@ -14,6 +14,7 @@ class Primitive_Bookmark(object):
         self.url = ""
         self.time = ""
         self.source = []        # Is it from Medium? Is it from Youtube
+        self.foldersStack = []
 
     def show(self):
         init(autoreset = True)
@@ -28,6 +29,7 @@ class Primitive_Bookmark(object):
         self.url = ""
         self.time = ""
         self.source = []
+        self.foldersStack = []
 
 
 class Chip(Primitive_Bookmark):
@@ -62,6 +64,7 @@ class Chip(Primitive_Bookmark):
         self.url = p_bm.url
         self.time = p_bm.time
         self.source = copy.deepcopy(p_bm.source)
+        self.foldersStack = copy.deepcopy(p_bm.foldersStack)
 
     def serialize(self):
         return  {
@@ -78,6 +81,7 @@ class Chip(Primitive_Bookmark):
                     "topics" : self.topics,
                     "phaseID" : self.phaseID,
                     "status" : self.status,
+                    "folders" : self.foldersStack
                 }
 
 
