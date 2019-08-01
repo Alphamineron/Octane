@@ -9,7 +9,7 @@ from config import __GC_DB
 from dataChip import Chip, Primitive_Bookmark
 from ChipOps.dfh import JSON
 
-def import_from_Browser(BrowserName, db_path, loader):
+def import_from_Browser(BrowserName, db_path, loader, mute = False):
     """
         Wrapper function that calls and handles the appropriate Bookmarks Loader
         for the given browser.
@@ -33,8 +33,8 @@ def import_from_Browser(BrowserName, db_path, loader):
         if not os.path.exists(db_path):
             raise FileNotFoundError
 
-        sys.stdout.write("\n> Importing bookmarks from {} -> ".format(BrowserName))
-        with Spinner():
+        if not mute: sys.stdout.write("\n> Importing bookmarks from {} -> ".format(BrowserName))
+        with Spinner(mute = mute):
             for bookmark in loader(db_path):
                 yield bookmark
 

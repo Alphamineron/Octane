@@ -8,7 +8,8 @@ except ModuleNotFoundError: import pickle
 import json
 
 from dataChip import Chip, generatePrimitiveBookmarks
-from . import importer
+# from . import importer
+import importer
 
 from utils.spinner import Spinner
 import colorama
@@ -23,7 +24,7 @@ def generateChips(limit):
         yield Chip(pbm)
 
 def generateChipsfromImport():
-    for p_bm in importer.generateImports():
+    for p_bm in importer.generateImportsfromExports():
         yield Chip(p_bm)
 
 #===============================================================================
@@ -105,7 +106,8 @@ if __name__ == '__main__':
     print(colorama.Fore.WHITE + colorama.Back.RED + 'Warning! This script is to be run internally by ' + PROJECT_NAME + ' scripts, direct use might lead to unexpected behaviour\n')
     # PICKLE.storeObjects(CHIPS_BIN, generateChipsfromImport())  # Should be handled from the main.py or app.py
 
-    JSON.storeObjects(CHIPS_JSON, generateChipsfromImport())
+    # JSON.storeObjects(CHIPS_JSON, generateChipsfromImport())
+    JSON.storeObjects(CHIPS_JSON, importer.generateChipImports())
 
     # pp = pprint.PrettyPrinter(indent=4)
     # pp.pprint(JSON.loadObjects(CHIPS_JSON))

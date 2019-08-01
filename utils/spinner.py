@@ -20,9 +20,10 @@ class Spinner:
         while 1:
             for cursor in '|/-\\': yield cursor
 
-    def __init__(self, delay=None):
+    def __init__(self, delay=None, mute=False):
         self.spinner_generator = self.spinning_cursor()
         if delay and float(delay): self.delay = delay
+        self.mute = mute
 
     def spinner_task(self):
         while self.busy:
@@ -34,6 +35,7 @@ class Spinner:
 
     def __enter__(self):
         self.busy = True
+        if self.mute: self.busy = False
         threading.Thread(target=self.spinner_task).start()
 
     def __exit__(self, exception, value, tb):
