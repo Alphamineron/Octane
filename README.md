@@ -1,14 +1,26 @@
 <div style="text-align:center">
 <img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
 
+# Octane
+A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who what to finally get some value from their heap of bookmarked/saved resources.
+
 ![status-wip](https://img.shields.io/badge/Status-Work%20in%20Progress-red.svg)
 </div>
 
+<!-- # <img src="https://img.icons8.com/nolan/100/000000/book-shelf.png" height="100" align="left" /> Octane: Bookmark Manager
+
+![status-wip](https://img.shields.io/badge/Status-Work%20in%20Progress-red.svg) -->
+
+---
+
+
 #### In Progress Tasks
-1. Remove Buku code and use a custom lighter Bookmarks parser.
-2. Server and Frontend Implementation to interact with the data.
+1. Tree view for showing bookmarks within their folders
+2. Adding support for collections
+3. Server and Frontend Implementation to interact with the data.
     1. Implement Pre-Building of Search Index using node.js for better client performance.
-3. Implementing searching
+4. Tags Implementation
+5. New Implementation of Search using MiniSearch or FlexSearch
 
 
 # Installation

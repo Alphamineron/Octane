@@ -8,7 +8,7 @@ except ModuleNotFoundError: import pickle
 import json
 
 from dataChip import Chip, generatePrimitiveBookmarks
-import importer
+from . import importer
 
 from utils.spinner import Spinner
 import colorama
@@ -65,7 +65,7 @@ class JSON(object):
         """
         if isinstance(obj, Chip):
             return obj.serialize()
-        raise TypeError(repr(obj) + " is not JSON serializable")
+        raise TypeError(repr(obj) + " is not JSON serializable or Registered in Encoder...")
 
     @staticmethod
     def storeObjects(filename, iterable = None, objectsList = None):
