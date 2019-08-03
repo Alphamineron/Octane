@@ -1,19 +1,65 @@
 import sys
 import os
 import json
-import ast
-import pprint
-from tqdm import tqdm
+import uuid
 from utils.spinner import Spinner
 
-from config import __GC_DB
+from config import __GC_DB, USERCODE
 from dataChip import Chip, Primitive_Bookmark
 from ChipOps.dfh import JSON
 
-from treelib import Node, Tree
+from treelib import Tree
 from treelib.exceptions import DuplicatedNodeIdError
 
-tree = Tree()
+class TreeOctane(Tree):
+    def __init__(self):
+        super(TreeOctane, self).__init__()
+
+    # @Override
+    def to_dict(self, nid=None, key=None, sort=True, reverse=False, with_data=False):
+        """Transform the whole tree into a dict."""
+
+        saved_nidState = nid  # Used to Discrimate the "root" node, removing it from the output JSON
+        nid = self.root if (nid is None) else nid
+        ntag = self[nid].tag
+        tree_dict = {
+                    "id": self.root if (saved_nidState is None) else ("F" + USERCODE + str(uuid.uuid4()).replace("-", "")),
+                    "name": ntag,
+                    "children": []
+                    }
+
+        if with_data:
+            tree_dict["data"] = self[nid].data
+
+        if self[nid].expanded:
+            queue = [self[i] for i in self[nid].fpointer]
+            key = (lambda x: x) if (key is None) else key
+            if sort:
+                queue.sort(key=key, reverse=reverse)
+
+            for elem in queue:    # Below Line is a Main Data Traffic Return point of the recursive Data Pipe (All the return statements point here)
+                tree_dict["children"].append(self.to_dict(elem.identifier, with_data=with_data, sort=sort, reverse=reverse))
+
+            if len(tree_dict["children"]) == 0:   # If No. of Children at the recursively relative current root are ZERO
+                tree_dict = {
+                                "id": ("F" + USERCODE + str(uuid.uuid4()).replace("-", "")),
+                                "name": self[nid].tag,
+                                "children": []
+                            } if not with_data else {
+
+                                "id": ("F" + USERCODE + str(uuid.uuid4()).replace("-", "")),
+                                "name": ntag,
+                                "children": [],
+                                "data": self[nid].data
+                            }
+
+            if(tree_dict["id"] == "root"):
+                return tree_dict["children"]
+
+            return tree_dict    # This return goes to the Main Data Traffic Return Point of the calling recursive function
+
+
+tree = TreeOctane()
 
 
 
@@ -55,7 +101,7 @@ def jsonMiner(db_path):
     with open(db_path, "r") as df:
         data = json.load(df)
     roots = data["roots"]
-    tree.create_node("Root", "root")   # root node
+    tree.create_node("root", "root")   # root node
 
     for entry in roots:
         if entry == "sync_transaction_version":
@@ -125,9 +171,7 @@ if __name__ == '__main__':
     print("\n\n")
     tree.show(line_type="ascii-em")
 
-    # pp = pprint.PrettyPrinter(indent=1)
-    # pp.pprint(ast.literal_eval(tree.to_json()))
-    JSON.storeObjects("data/folderTree.json", jsonObj = json.loads(tree.to_json()))
+    JSON.storeObjects("data/folderTree.json", jsonObj = json.loads(tree.to_json(with_data = True)))
 
 
 
