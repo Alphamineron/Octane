@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import ast
 import pprint
 from tqdm import tqdm
 from utils.spinner import Spinner
@@ -8,6 +9,13 @@ from utils.spinner import Spinner
 from config import __GC_DB
 from dataChip import Chip, Primitive_Bookmark
 from ChipOps.dfh import JSON
+
+from treelib import Node, Tree
+from treelib.exceptions import DuplicatedNodeIdError
+
+tree = Tree()
+
+
 
 def import_from_Browser(BrowserName, db_path, loader, mute = False):
     """
@@ -39,20 +47,35 @@ def import_from_Browser(BrowserName, db_path, loader, mute = False):
                 yield bookmark
 
     except Exception as e:
-        print("Unable to import bookmarks from {}".format(BrowserName))
-        print("Exception Encountered: ", e)
+        print("Unable to import bookmarks from {}\n".format(BrowserName))
+        raise e
 
 
 def jsonMiner(db_path):
-    with open(db_path, 'r') as df:
+    with open(db_path, "r") as df:
         data = json.load(df)
-    roots = data['roots']
+    roots = data["roots"]
+    tree.create_node("Root", "root")   # root node
 
     for entry in roots:
         if entry == "sync_transaction_version":
             continue
-        for object in digJSONTree(roots[entry]["children"], roots[entry]["name"]):
-            yield object
+
+        tree.create_node(roots[entry]["name"], ("root->" + roots[entry]["name"]), parent="root")
+        node = tree.get_node("root->" + roots[entry]["name"])
+        node.data = []
+
+        for object in digJSONTree(roots[entry]["children"], ["root", roots[entry]["name"]]):
+            # node.data.append(object.ID)  The reason this leads to error is because it's on the main
+            yield object                 # data pipe, so we find duplicates of nested Chips' IDs
+
+
+def createTreeNode(foldersStack):
+    parentTrace = foldersStack[:-1]
+    try:
+        tree.create_node(foldersStack[-1], '->'.join(foldersStack), parent='->'.join(parentTrace))
+    except DuplicatedNodeIdError as e:
+        pass
 
 
 def digJSONTree(sublist, foldersStack):
@@ -70,18 +93,25 @@ def digJSONTree(sublist, foldersStack):
     """
     for item in sublist:
         if item["type"] == "folder":
-            # foldersStack.append(item["name"])
-            updatedFolderStack = foldersStack + "," + item["name"]
-            for object in digJSONTree(item["children"], updatedFolderStack):
+            foldersStack.append(item["name"])
+            createTreeNode(foldersStack)
+
+            for object in digJSONTree(item["children"], foldersStack):
                 yield object
-            # foldersStack.pop()
+            foldersStack.pop()
 
         elif item["type"] == "url":
             p_bm = Primitive_Bookmark()
-            p_bm.name = item['name']
-            p_bm.url = item['url']
-            p_bm.foldersStack = foldersStack.split(",")
-            yield Chip(p_bm)
+            p_bm.name = item["name"]
+            p_bm.url = item["url"]
+            p_bm.foldersStack = foldersStack
+            chip = Chip(p_bm)
+
+            node = tree.get_node('->'.join(foldersStack))
+            if node.data is None:
+                node.data = []
+            node.data.append(chip.ID)
+            yield chip
 
 
 
@@ -91,6 +121,13 @@ if __name__ == '__main__':
     sys.stdout.write("\n> Fetching bookmarks from local file system -> ")
     with Spinner():
         print("\nObjects loaded: ", len(JSON.loadObjects("data/chipsTEST.json")))
+
+    print("\n\n")
+    tree.show(line_type="ascii-em")
+
+    # pp = pprint.PrettyPrinter(indent=1)
+    # pp.pprint(ast.literal_eval(tree.to_json()))
+    JSON.storeObjects("data/folderTree.json", jsonObj = json.loads(tree.to_json()))
 
 
 
