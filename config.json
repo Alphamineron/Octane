@@ -1,12 +1,14 @@
 {
-    "PROJECT_NAME": "BMM",
+    "PROJECT_NAME": "Octane",
     "CHIPS_BIN": "data/chips.bin",
     "CHIPS_JSON": "data/chips.json",
+    "FOLDERTREE_JSON": "data/folderTree.json",
     "__GC_DB": "~/Library/Application Support/Google/Chrome/Default/Bookmarks",
     "__CR_DB": "~/Library/Application Support/Chromium/Default/Bookmarks",
     "__MF_DB": "",
     "BROWSER_EXPORT_FILE": "./temp/browserExport.html",
     "MEDIUM_DIR": "Dump/Data/medium-export/bookmarks/",
     "DATASET_URL": "alphamineron/medium-bookmarks",
-    "USERCODE": "0000"
+    "USERCODE": "0000",
+    "__CONFIGinit": true
 }

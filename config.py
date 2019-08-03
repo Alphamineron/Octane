@@ -7,6 +7,7 @@ with open("config.json") as config_file:
 PROJECT_NAME = CONFIG["PROJECT_NAME"]
 CHIPS_BIN = CONFIG["CHIPS_BIN"]
 CHIPS_JSON = CONFIG["CHIPS_JSON"]
+FOLDERTREE_JSON = CONFIG["FOLDERTREE_JSON"]
 BROWSER_EXPORT_FILE = CONFIG["BROWSER_EXPORT_FILE"]
 MEDIUM_DIR = CONFIG["MEDIUM_DIR"]
 DATASET_URL = CONFIG["DATASET_URL"]
@@ -14,7 +15,6 @@ USERCODE = CONFIG["USERCODE"]
 __GC_DB = CONFIG["__GC_DB"] # Chrome Browser's Bookmarks Database Path
 __CR_DB = CONFIG["__CR_DB"] # Chromium Browser's Bookmarks Database Path
 __MF_DB = CONFIG["__MF_DB"] # Firefox Browser's Bookmarks Database Path [NOT SUPPORTED]
-__CONFIGinit = False    # Denotes whether the config file has been initialized or not (To avoid undefined behaviour)
 
 def storeConfig():
     with open("config.json", "w") as fout:
@@ -51,14 +51,34 @@ def fetchDBPaths():
         print(("\nIf you believe that python is functional on your OS, Manually "
                 "enter the paths in config.json within the project repository"))
 
+reset_config = {
+    "PROJECT_NAME": "Octane",
+    "CHIPS_BIN": "data/chips.bin",
+    "CHIPS_JSON": "data/chips.json",
+    "FOLDERTREE_JSON": "data/folderTree.json",
+    "__GC_DB": "",
+    "__CR_DB": "",
+    "__MF_DB": "",
+    "BROWSER_EXPORT_FILE": "",
+    "MEDIUM_DIR": "",
+    "DATASET_URL": "",
+    "USERCODE": "0000",
+    "__CONFIGinit": False
+}
+
+
 
 if __name__ == '__main__':
     try:
         print("Initializing config.json")
         fetchDBPaths()
+
+        # __CONFIGinit: Denotes whether the config file has been
+        #               initialized or not (To avoid undefined behaviour)
+        CONFIG["__CONFIGinit"] = True   # Default Value: FALSE
         storeConfig()
-        __CONFIGinit = True
-        
+
     except Exception as e:
-        __CONFIGinit = False
-        print("Exception Encountered: ", e)
+        CONFIG["__CONFIGinit"] = False
+        storeConfig()
+        raise e
