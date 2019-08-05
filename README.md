@@ -2,7 +2,7 @@
 <img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
 
 # Octane
-A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who what to finally get some value from their heap of bookmarked/saved resources.
+A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who want to finally get some value from their heap of bookmarked/saved resources.
 
 ![status-wip](https://img.shields.io/badge/Status-Work%20in%20Progress-red.svg)
 </div>
