@@ -1,6 +1,8 @@
 <div style="text-align:center">
-<img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
-
+    <p align="center">
+        <img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
+    </p>
+    
 # Octane
 A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who want to finally get some value from their heap of bookmarked/saved resources.
 
