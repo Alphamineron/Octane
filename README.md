@@ -24,6 +24,21 @@ A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those
 
 
 # Installation
+To setup this project on your machine for development, clone the repo as usual and follow the following steps to setup your environment.
+> Note: This works well for the Bash Shell, found in Linux and MacOS by default and also, the given instructions for installing Python Dependencies are for Anaconda. If you don't have it, try downloading the Python3.x version from [Anaconda's Official Website](https://www.anaconda.com/distribution/)...
+
+```sh
+    conda env create -f environment.yml
+    source activate yourenvname
+    pip install -r requirements.txt
+```
+
+**Colorama Download Instructions:** You may face an error, when installing and using colorama through pip. This requires a manual fix. Download `.tar.gz` package for colorama from https://pypi.python.org/packages/source/c/colorama/colorama-0.3.3.tar.gz and run the following commands in the terminal.
+```sh
+    cd colorama*
+    python setup.py install
+```
+
 
 ## Data.World and IFTTT Integration (Optional)
 This integration is used to fetch recently bookmarked articles from Medium and add them into local dataset.
