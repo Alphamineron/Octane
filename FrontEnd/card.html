@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <base target="_blank">
+    <title>Chips List</title>
+
+    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+    <link rel="stylesheet" href="css/card.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+</head>
+<body>
+    <a style="  display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem;
+                background: #242424;
+                color: white;" class="card-wrapper" href="./search.html">Search</a>
+
+    <div id="myData"></div>
+    <div class="card-wrapper" id="card">
+
+        <div class="card--date">Completed 28/04/2019</div>
+        <div class="card--details">
+
+            <div class="card--details-left">
+
+                <div class="card--title">AWS Certified Cloud Practitioner</div>
+                <div class="card--attribute-wrapper show-on-mobile">
+                    <div class="card--attribute card--attribute-1">
+                        <span>13</span>
+                        <span>hrs</span>
+                    </div>
+
+                    <span class="divider">•</span>
+
+                    <div class="card--attribute card--attribute-2">
+                        <span class="c-n700 heavy">AUD</span>
+                        <span>99.00</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card--details-right">
+
+                <div class="card--attribute-wrapper hide-on-mobile">
+                    <div class="card--attribute card--attribute-1">
+                        <span>13</span>
+                        <span>hrs</span>
+                    </div>
+                    <div class="card--attribute card--attribute-2">
+                        <span class="c-n700 heavy">AUD</span>
+                        <span>99.00</span>
+                    </div>
+                </div>
+                <div class="card--icon card--menu-wrapper">
+
+                    <button class="card--menu-button">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="card--menu-dropdown-wrapper" role="menu">
+                        <ul class="card-menu">
+                            <li class="card-menu--item" role="menuitem">
+                                <a class="link link--edit" href="#">Menu1</a>
+                            </li>
+                            <li class="card-menu--item" role="menuitem">
+                                <a class="link link--delete" href="#">Menu2</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="card--icon card--chevron hide-on-mobile">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+            </div>
+
+        </div>
+        <span class="card--brick brick-primary">AWS Certification</span>
+        <div class="card--custom-field-wrapper" id="custom-field">
+            <div class="custom-field--row">
+
+                <div class="custom-field--label">Training Provider</div>
+                <div class="custom-field--value">Amazon AWS</div>
+
+            </div>
+            <div class="custom-field--row">
+
+                <div class="custom-field--label">Training Provider</div>
+                <div class="custom-field--value">Amazon AWS</div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="js/card.js"></script>
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
+    <script type="text/javascript" src="js/cardRender.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <span class="card--brick brick-secondary">Soft Skills</span>
+<span class="card--brick brick-success">Product Training</span> -->
