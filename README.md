@@ -2,7 +2,7 @@
     <p align="center">
         <img src="https://img.icons8.com/nolan/100/000000/book-shelf.png">
     </p>
-    
+
 # Octane
 A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who want to finally get some value from their heap of bookmarked/saved resources.
 
@@ -31,12 +31,13 @@ To setup this project on your machine for development, clone the repo as usual a
 
 ```sh
     conda env create -f environment.yml
-    source activate yourenvname
+    conda activate yourenvname
     pip install -r requirements.txt
 ```
 
 **Colorama Download Instructions:** You may face an error, when installing and using colorama through pip. This requires a manual fix. Download `.tar.gz` package for colorama from https://pypi.python.org/packages/source/c/colorama/colorama-0.3.3.tar.gz and run the following commands in the terminal.
 ```sh
+    conda activate yourenvname
     cd colorama*
     python setup.py install
 ```
