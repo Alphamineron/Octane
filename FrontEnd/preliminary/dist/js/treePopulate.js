@@ -27,7 +27,7 @@ function returnTreeHTML(folder) {
         <li class="tree_li tree_parent" id="${folder["id"]}">
           <span class="tree_item">
             <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-            <span style="outline:none;" contenteditable> ${folder["name"]} </span>
+            <span> ${folder["name"]} </span>
           </span>
           <ul class="tree_child-list">
             <li class="tree_li">
