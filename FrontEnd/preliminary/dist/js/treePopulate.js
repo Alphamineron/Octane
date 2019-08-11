@@ -80,4 +80,9 @@ function main() {
 
     $(".tree").add('*').off();	// Clean Tree's EListeners, to avoid attaching multiple EListeners to the same element
     addTreeEventListeners();	// Attach EListeners to the Tree's elements
+
+    var Containers = document.querySelectorAll("ul.tree, ul.tree ul.tree_child-list");
+    Containers.forEach(container => {
+      drake.containers.push(container);      
+    });
 }
