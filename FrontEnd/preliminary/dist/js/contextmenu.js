@@ -47,7 +47,7 @@ $(document).ready(function() {
                 
                 // A case for each action. Your actions here
                 case "edit": break;   // Edit's Functionality is handled in the modal.js
-                case "remove": $recentTarget.remove(); updateTreeState(); break;
+                case "remove": $recentTarget.remove();  break;
             }
             // Hide it AFTER the action was triggered
             $(".tree_menu").hide(100);

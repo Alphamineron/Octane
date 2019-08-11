@@ -76,7 +76,6 @@ function addTreeEventListeners() {
 
     $(".tree").add('*').off("click blur"); // Drop all Event Listeners connected to the Tree
     addTreeEventListeners();   // Call function again to add listeners to newly added folder
-    updateTreeState();
 
     // if($(this).parent().parent().attr('id') === "tree") {
     //   var PID = $(this).parent().parent().attr('id');

@@ -37,7 +37,6 @@ function addHandler(el, type){
           if(folderID !== "" && foldername !== "") {
               $("#"+folderID + " .tree_item span").text(foldername);
           }
-          updateTreeState();
           
           // addDelta("folder", { 
           //   id : folderID,

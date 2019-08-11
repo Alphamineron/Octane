@@ -1,3 +1,8 @@
+window.addEventListener("beforeunload", function(e){
+    updateTreeState();      // Save Tree State before the page reloads or closes
+}, false);
+
+
 //                      Logic Behind JS-Based StateSaving
 //  foo() captures user's intended changes and calls addDelta() method
 // 
