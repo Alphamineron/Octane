@@ -7,11 +7,20 @@
   <title>Tree menu</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
   <link rel="stylesheet" href="dist/css/style.min.css">
+  <link rel="stylesheet" href="dist/css/modal.css">
 </head>
 
 <body>
 <!-- partial:index.partial.html -->
+<div class="tree_menu">
+  <ul class="tree_menu-options">
+    <li class="tree_menu-option tree_menu-option-edit" data-action="edit">EDIT</li>
+    <li class="tree_menu-option tree_menu-option-remove" data-action="remove">REMOVE</li>
+  </ul>
+</div>
+
 <ul id="tree" class="tree">
   <li class="tree_li">
     <span class="tree_item tree_item--addBtn">
@@ -125,8 +134,16 @@
 </ul> -->
 <!-- partial -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="dist/js/script.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script> -->
+
+<script src="dist/js/treeListeners.js"></script>
 <script src="dist/js/treePopulate.js"></script>
+
+<script src="dist/js/contextmenu.js"></script>
+<script src="dist/js/modal.js"></script>
+<script src="dist/js/saveState.js"></script>
 
 </body>
 </html>
