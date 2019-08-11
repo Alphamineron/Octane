@@ -1,150 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Tree menu</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
-  <link rel="stylesheet" href="dist/css/style.min.css">
-  <link rel="stylesheet" href="dist/css/modal.css">
-  <link rel="stylesheet" href="dist/css/dragula.min.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tree menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+    <link rel="stylesheet" href="dist/css/style.min.css">
+    <link rel="stylesheet" href="dist/css/modal.css">
+    <link rel="stylesheet" href="dist/css/dragula.min.css">
+  </head>
 
-<body>
-<!-- partial:index.partial.html -->
-<div class="tree_menu">
-  <ul class="tree_menu-options">
-    <li class="tree_menu-option tree_menu-option-edit" data-action="edit">EDIT</li>
-    <li class="tree_menu-option tree_menu-option-remove" data-action="remove">REMOVE</li>
-  </ul>
-</div>
+  <body>
+    <div class="tree_menu">
+      <ul class="tree_menu-options">
+        <li class="tree_menu-option tree_menu-option-edit" data-action="edit">EDIT</li>
+        <li class="tree_menu-option tree_menu-option-remove" data-action="remove">REMOVE</li>
+      </ul>
+    </div>
 
-<ul id="tree" class="tree">
-  <li class="tree_li">
-    <span class="tree_item tree_item--addBtn">
-      <button class="fa fa-plus-circle"></button>
-    </span>
-  </li>
-</ul>
-<!-- <ul class="tree">
-  <li class="tree_li tree_parent">
-    <span class="tree_item">
-      <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-      Section 1
-    </span>
-    <ul class="tree_child-list">
-      <li class="tree_li">
-        <span class="tree_item">
-          <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-          Section 1.1
-        </span>
-        <ul class="tree_child-list">
-          <li class="tree_li">
-            <span class="tree_item">
-              Section 1.1.1
-            </span>
-          </li>
-          <li class="tree_li">
-            <span class="tree_item">
-              Section 1.1.2
-            </span>
-          </li>
-          <li class="tree_li">
-            <span class="tree_item tree_item--addBtn">
-              <button class="fa fa-plus-circle"></button>
-            </span>
-          </li>
-        </ul>
-      </li>
-      <li class="tree_li">
-        <span class="tree_item">
-          Section 1.2
-        </span>
-      </li>
+    <ul id="tree" class="tree">
       <li class="tree_li">
         <span class="tree_item tree_item--addBtn">
           <button class="fa fa-plus-circle"></button>
         </span>
       </li>
     </ul>
-  </li>
 
-  <li class="tree_li tree_parent" id="F0000sn31283u123j123x">
-    <span class="tree_item">
-      <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-      Section 2
-    </span>
-    <ul class="tree_child-list">
-      <li class="tree_li">
-        <span class="tree_item tree_item--addBtn">
-          <button class="fa fa-plus-circle"></button>
-        </span>
-      </li>
-    </ul>
-  </li>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="dist/js/dragula.min.js"></script>
 
-  <li class="tree_li tree_parent">
-    <span class="tree_item">
-      <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-      Section 3
-    </span>
-    <ul class="tree_child-list">
-      <li class="tree_li">
-        <span class="tree_item">
-          <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-          Section 3.1
-        </span>
-        <ul class="tree_child-list">
-          <li class="tree_li">
-            <span class="tree_item">
-              Section 3.1.1
-            </span>
-          </li>
-          <li class="tree_li">
-            <span class="tree_item">
-              Section 3.1.2
-            </span>
-          </li>
-          <li class="tree_li">
-            <span class="tree_item tree_item--addBtn">
-              <button class="fa fa-plus-circle"></button>
-            </span>
-          </li>
-        </ul>
-      </li>
-      <li class="tree_li">
-        <span class="tree_item">
-          Section 3.2
-        </span>
-      </li>
-      <li class="tree_li">
-        <span class="tree_item tree_item--addBtn">
-          <button class="fa fa-plus-circle"></button>
-        </span>
-      </li>
-    </ul>
-  </li>
-  <li class="tree_li">
-    <span class="tree_item tree_item--addBtn">
-      <button class="fa fa-plus-circle"></button>
-    </span>
-  </li>
-</ul> -->
-<!-- partial -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="dist/js/dragula.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="dist/js/treeListeners.js"></script>
+    <script src="dist/js/treePopulate.js"></script>
 
-<script src="dist/js/treeListeners.js"></script>
-<script src="dist/js/treePopulate.js"></script>
+    <script src="dist/js/contextmenu.js"></script>
+    <script src="dist/js/modal.js"></script>
+    <script src="dist/js/saveState.js"></script>
+    <script src="dist/js/dragndrop.js"></script>
 
-<script src="dist/js/contextmenu.js"></script>
-<script src="dist/js/modal.js"></script>
-<script src="dist/js/saveState.js"></script>
-<script src="dist/js/dragndrop.js"></script>
-
-</body>
+  </body>
 </html>
