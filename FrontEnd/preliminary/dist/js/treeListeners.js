@@ -16,22 +16,23 @@ function uuidv4() {
 
 
 function addTreeEventListeners() {
-  // Event Listner to Catch the newly typed Foldername by User
+  // Event Listener to Catch the newly typed Foldername by User
   $(".tree_item span[contenteditable]").blur(function(e) {
     console.log($(this).text());
   });
 
   // Event Listener to control open/closing of folder branches in Tree
-  $('.tree_item').click(function (e) {
-    $(this).next().toggle(300);   // This is where the main magic happens
+  $('.tree_icon').click(function (e) {
+    var $this = $(this).parent();
+    $this.next().toggle(300);   // This is where the main magic happens
 
-    $(this).toggleClass('tree_item--opened');   // CSS Class that serves as a flag
-    if ($(this).hasClass('tree_item--opened')) {    // A flag for this shit
-      $(this).children('.tree_icon')                // Just changing the icon
+    $this.toggleClass('tree_item--opened');   // CSS Class that serves as a flag
+    if ($this.hasClass('tree_item--opened')) {    // A flag for this shit
+      $this.children('.tree_icon')                // Just changing the icon
               .addClass('fa-folder-open')
               .removeClass('fa-folder');
     } else {
-      $(this).children('.tree_icon')
+      $this.children('.tree_icon')
               .addClass('fa-folder')
               .removeClass('fa-folder-open');
     }
@@ -41,13 +42,15 @@ function addTreeEventListeners() {
   // This part just make sure to render a selected node (Active Node)
   // This can be modified to add multi-select abilities + Drag&Drop
   // :has(ul) searches all the child elements of the found element for a <ul>
-  $('.tree_li').not(':has(ul, .tree_item--addBtn)').find('.tree_item').click(function (e) {
-    $('.tree li')   // First, Remove the Active State of any other .tree_item
-                .find('.tree_item')
-                .not(this)
-                .removeClass('tree_item--active');
-    // Finally, Toggle the active state of the Target .tree_item element
-    $(this).toggleClass('tree_item--active');
+  $('.tree_li').not(':has(> .tree_item--addBtn)').find('.tree_item').click(function(event) {
+    if(!event.target.classList.contains("tree_icon")) {
+      $('.tree li')   // First, Remove the Active State of any other .tree_item
+                  .find('.tree_item')
+                  .not(this)
+                  .removeClass('tree_item--active');
+      // Finally, Toggle the active state of the Target .tree_item element
+      $(this).toggleClass('tree_item--active');
+    }
   })
 
 
