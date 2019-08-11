@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  addTreeEventListeners();
+  // addTreeEventListeners();
 });
 // =================================================================
 // 			Above Code Ensures that the JS isn't executed
@@ -16,10 +16,11 @@ function uuidv4() {
 
 
 function addTreeEventListeners() {
-  // Event Listener to Catch the newly typed Foldername by User
-  $(".tree_item span[contenteditable]").blur(function(e) {
-    console.log($(this).text());
-  });
+  // ![DEPRECATED] Commented Event Listener (blur)
+  // // Event Listener to Catch the newly typed Foldername by User
+  // $(".tree_item span[contenteditable]").blur(function(e) {
+  //   console.log($(this).text());
+  // });
 
   // Event Listener to control open/closing of folder branches in Tree
   $('.tree_icon').click(function (e) {
@@ -43,7 +44,7 @@ function addTreeEventListeners() {
   // This can be modified to add multi-select abilities + Drag&Drop
   // :has(ul) searches all the child elements of the found element for a <ul>
   $('.tree_li').not(':has(> .tree_item--addBtn)').find('.tree_item').click(function(event) {
-    if(!event.target.classList.contains("tree_icon")) {
+    if(!event.target.classList.contains("tree_icon")) {  // Ignore any clicks on the Folder icon
       $('.tree li')   // First, Remove the Active State of any other .tree_item
                   .find('.tree_item')
                   .not(this)
@@ -54,13 +55,14 @@ function addTreeEventListeners() {
   })
 
 
-  // Add Item Button Click Event Listener
+  // "Add Item" Button Click Event Listener
   $(".tree_item--addBtn").click(function() {
+    const ID = "F0000" + uuidv4();
     $(this).parent().before(`
-      <li class="tree_li tree_parent" id="${"F0000" + uuidv4()}">
+      <li class="tree_li tree_parent" id="${ID}">
         <span class="tree_item">
           <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-          <span style="outline:none;" contenteditable> New Folder </span>
+          <span>New Folder</span>
         </span>
         <ul class="tree_child-list">
           <li class="tree_li">
@@ -73,6 +75,19 @@ function addTreeEventListeners() {
     `);
 
     $(".tree").add('*').off("click blur"); // Drop all Event Listeners connected to the Tree
-    addTreeEventListeners();   // Call function again to add elistners to newly added folder
+    addTreeEventListeners();   // Call function again to add listeners to newly added folder
+    updateTreeState();
+
+    // if($(this).parent().parent().attr('id') === "tree") {
+    //   var PID = $(this).parent().parent().attr('id');
+    // }
+    // else {
+    //   var PID = $(this).parent().parent().parent().attr('id');
+    // }
+    // addDelta({
+    //   id : ID,
+    //   name : "New Folder",
+    //   newPID : PID,
+    // });
   });
 }

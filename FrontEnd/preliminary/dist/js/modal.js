@@ -30,12 +30,19 @@ function addHandler(el, type){
         return input.value === '';
       };
       opts.confirmAction = function() {
-        
         if($recentTarget !== null)  // $recentTarget is a jQuery object
-          addDelta("folder", { 
-            id : $recentTarget.attr('id'),
-            name : input.value
-          });
+          var folderID = $recentTarget.attr('id');
+          var foldername = input.value;
+          // Update DOM
+          if(folderID !== "" && foldername !== "") {
+              $("#"+folderID + " .tree_item span").text(foldername);
+          }
+          updateTreeState();
+          
+          // addDelta("folder", { 
+          //   id : folderID,
+          //   name : foldername
+          // });
       };
     };
     

@@ -10,14 +10,20 @@ else ready();
 let folders;   // Global Variable
 
 function ready() {
-	const endpoint = "../../../data/folderTree.json";
-	fetch(endpoint)
-	    .then(response => response.json())
-	    .then(function(data) {
-	        folders = data;
-	        main();
-	    })
-	    .catch(err => console.log(err));
+  if(treeStateAvailable()) {
+    folders = getTreeState();
+    main();
+  }
+  else {
+    const endpoint = "../../../data/folderTree.json";
+    fetch(endpoint)
+        .then(response => response.json())
+        .then(function(data) {
+            folders = data;
+            main();
+        })
+        .catch(err => console.log(err));
+  }
 }
 
 function returnTreeHTML(folder) {
@@ -27,7 +33,7 @@ function returnTreeHTML(folder) {
         <li class="tree_li tree_parent" id="${folder["id"]}">
           <span class="tree_item">
             <i class="fa fa-folder tree_icon" aria-hidden="true"></i>
-            <span> ${folder["name"]} </span>
+            <span>${folder["name"]}</span>
           </span>
           <ul class="tree_child-list">
             <li class="tree_li">
