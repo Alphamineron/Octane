@@ -3,20 +3,75 @@
 
 $base-color: #0b4a7e;
 
+$item-text-color: black;
+$item-bg-color: white;
+$item-bg-color-hover: #cbcbcb;
+
+$addItemBtn-bg-color: #00a65a;
+$addItemBtn-bg-color-hover: #ffa600;
+
+$tree-branch-color: #999;
+$tree-branch-thickness: 2px;
+
+.tree-wrapper {
+	position: relative;
+	top: 220px;
+
+	width: auto;
+	overflow: auto;
+
+	border-top: 1px solid grey;
+	margin: 10px 0 20px 0;
+
+	button#tree-refresh {
+		position: absolute;
+		top: 5px;
+		left: -5px;
+		font-size: 20px;
+
+		color: white;
+		background: transparent;
+		outline: none;
+		border: none;
+		cursor: pointer;
+
+		p {
+			position: relative;
+			top: -3px;
+			left: 10px;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 0.7rem;
+			color: lighten($color: $base-color, $amount: 25);
+			display: inline;
+			visibility: hidden;
+			opacity: 0;
+			transition: visibility 0s, opacity 0.5s ease;
+		}
+
+		&:hover p {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
 .tree {
+	color: $item-text-color;
+	position: relative;
+	// top: 220px;
 	min-height: 20px;
 	padding: 19px;
 	margin-bottom: 20px;
-	margin-left: 40px;
+	margin-left: 20px;
 
-	@media (max-width: 600px) {
+	@media (max-width: 1400px) {
 		margin-left: 10px;
 	}
 
 	&_li {
 		position: relative;
 		margin: 0;
-		padding: 10px 5px 0 5px;
+		padding: 10px 5px 0 15px; // +10px on left padding (last one) to increase the width of the tree
 		list-style-type: none;
 
 		&:before,
@@ -28,17 +83,17 @@ $base-color: #0b4a7e;
 		}
 
 		&:before {
-			border-left: 1px solid #999;
+			border-left: $tree-branch-thickness solid $tree-branch-color;
 			height: 100%;
 			top: -5px;
 			width: 1px;
 		}
 
 		&:after {
-			border-top: 1px solid #999;
+			border-top: $tree-branch-thickness solid $tree-branch-color;
 			height: 20px;
 			top: 25px;
-			width: 25px;
+			width: 35px; // +10px on width to increase the width of the tree
 		}
 
 		&:last-child:before {
@@ -54,12 +109,12 @@ $base-color: #0b4a7e;
 		position: relative;
 
 		.tree_item:hover + ul li .tree_item:not(.tree_item--active) {
-			background-color: #cbcbcb;
+			background-color: $item-bg-color-hover;
 
 			&.tree_item--addBtn {
 				&:before,
 				button {
-					background-color: #ffa600;
+					background-color: $addItemBtn-bg-color-hover;
 				}
 			}
 		}
@@ -78,13 +133,16 @@ $base-color: #0b4a7e;
 	&_item {
 		display: inline-block;
 		padding: 3px 8px;
-		border: 1px solid #999;
+		background-color: $item-bg-color;
+		// border: $tree-branch-thickness solid $tree-branch-color;
+		border: none;
 		border-radius: 5px;
 		text-decoration: none;
+		white-space: nowrap;
 		cursor: default;
 
 		&:hover {
-			background-color: #cbcbcb;
+			background-color: $item-bg-color-hover;
 		}
 
 		&--active {
@@ -111,22 +169,24 @@ $base-color: #0b4a7e;
 				font-family: Arial, Helvetica, sans-serif;
 				font-size: 0.9rem;
 				color: white;
-				background-color: #00a65a;
+				background-color: $addItemBtn-bg-color;
 				content: "Add Item";
+				height: 16px;
 
-				border: 1px solid #cbcbcb83;
+				border: none;
 				border-radius: 5px;
 				padding: 0.14em 8px;
 				position: absolute;
-				right: -5.3em;
+				right: -5em;
 				top: -0.03em;
 				cursor: pointer;
 			}
 
 			button {
-				background-color: #00a65a;
+				height: 20px;
+				background-color: $addItemBtn-bg-color;
 				color: white;
-				border: 1px solid #cbcbcb83;
+				border: none;
 				border-radius: 5px;
 				outline: none;
 				cursor: pointer;
