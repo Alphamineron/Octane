@@ -61,6 +61,7 @@ function fetchTreeState(parentNode = $("#tree"), treePos = TreeState) {
 function updateTreeState() {
     TreeState = [];  // Resetting to avoid duplications
     fetchTreeState();   // Fetch DOM Structure and parse that into the TreeFolderStructure
+    if(TreeState.length == 0) return;   // Don't save anything if the tree is empty
     
     if (typeof(Storage) !== "undefined")
         localStorage.setItem('TreeState', JSON.stringify(TreeState));
@@ -73,7 +74,7 @@ function getTreeState() {
 }
 
 function treeStateAvailable() {
-    return (!(localStorage.getItem('TreeState') === null));
+    return (localStorage.getItem('TreeState') !== null);
 }
 
 function clearTreeState() {
