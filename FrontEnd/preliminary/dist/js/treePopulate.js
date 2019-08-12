@@ -7,20 +7,28 @@ else ready();
 // 			Using async
 // =================================================================
 
+// if(localStorage.getItem('fetchTreeFromJSON') !== null) { // If found in localStorage
+//   var fetchTreeFromJSON = localStorage.getItem('fetchTreeFromJSON');
+//   var fetchTreeFromJSON = (fetchTreeFromJSON === 'true');   // Boolean Conversion of the localStorage returned value
+// }
+// else 
+  var fetchTreeFromJSON = false;   // Flag for the Refresh Btn
+
 let folders;   // Global Variable
 
 function ready() {
-  if(treeStateAvailable()) {
+  if(treeStateAvailable() && !fetchTreeFromJSON) {
     folders = getTreeState();
     main();
   }
   else {
-    const endpoint = "../../../data/folderTree.json";
+    const endpoint = "../../data/folderTree.json";
     fetch(endpoint)
         .then(response => response.json())
         .then(function(data) {
             folders = data;
             main();
+            fetchTreeFromJSON = false;  // Flag for the Refresh Btn
         })
         .catch(err => console.log(err));
   }
@@ -85,4 +93,22 @@ function main() {
     Containers.forEach(container => {
       drake.containers.push(container);      
     });
+}
+
+
+function refreshTree() {
+  console.log("Refresh Started");
+  $("#tree").remove();
+  $(".tree-wrapper").append(`
+            <ul id="tree" class="tree">
+              <li class="tree_li">
+                <span class="tree_item tree_item--addBtn">
+                <button class="fa fa-plus-circle"></button>
+                </span>
+              </li>
+            </ul>
+  `);
+  ready();
+  addSidebarListeners();
+  console.log("Refresh Finished");
 }
