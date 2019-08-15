@@ -98,7 +98,7 @@ def import_from_Browser(BrowserName, db_path, loader, mute = False):
                 yield bookmark
 
     except Exception as e:
-        print("Unable to import bookmarks from {}\n".format(BrowserName))
+        print("\nUnable to import bookmarks from {}".format(BrowserName))
         raise e
 
 

@@ -6,5 +6,5 @@ from config import CHIPS_JSON
 from utils.spinner import Spinner
 
 JSON.storeObjects(CHIPS_JSON, importer.generateChipImports())
-print(len(JSON.loadObjects(CHIPS_JSON)), "Objects loaded")
+print("\n", len(JSON.loadObjects(CHIPS_JSON)), "Objects loaded")
 pB.TreeOctane.to_JSON()
