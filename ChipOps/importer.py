@@ -12,7 +12,7 @@ import controller_buku
 from utils.spinner import Spinner
 
 # Fetching Defined Project-Scoped Config Constants
-from config import BROWSER_EXPORT_FILE, MEDIUM_DIR, __GC_DB
+from config import BROWSER_EXPORT_FILE, MEDIUM_DIR, __GC_DB, __CR_DB, __IMPORT_GC, __IMPORT_CR, __IMPORT_MEDIUM
 
 
 def GET_BrowserExports(exportFile = BROWSER_EXPORT_FILE, mute = True, buku = False):
@@ -75,11 +75,26 @@ def generateChipImports():
 
     sys.stdout.write("\n> Auto-Importing bookmarks: ")   # TODO: Add the config setup check before this for paths
     with Spinner():
-        for chips in BP.import_from_Browser("Google Chrome", __GC_DB, BP.jsonMiner, mute = True):
-            yield chips
+        if(__IMPORT_GC):
+            try:
+                for chips in BP.import_from_Browser("Google Chrome", __GC_DB, BP.jsonMiner, mute = True):
+                    yield chips
+            except FileNotFoundError as e:
+                print("Issue Encountered: ", e, " > ", __GC_DB)
 
-        mediumB, _ = GET_MediumExports()
-        for p_bm in mediumB:
-            yield Chip(p_bm)
+        if(__IMPORT_CR):
+            try:
+                for chips in BP.import_from_Browser("Chromium", __CR_DB, BP.jsonMiner, mute = True):
+                    yield chips
+            except FileNotFoundError as e:
+                print("Issue Encountered: ", e, " > ", __CR_DB)
+
+        if(__IMPORT_MEDIUM):
+            try:
+                mediumB, _ = GET_MediumExports()
+                for p_bm in mediumB:
+                    yield Chip(p_bm)
+            except FileNotFoundError as e:
+                print("Issue Encountered: ", e, " > ", MEDIUM_DIR)
 
     # yield from mediumB

@@ -15,6 +15,9 @@ USERCODE = CONFIG["USERCODE"]
 __GC_DB = CONFIG["__GC_DB"] # Chrome Browser's Bookmarks Database Path
 __CR_DB = CONFIG["__CR_DB"] # Chromium Browser's Bookmarks Database Path
 __MF_DB = CONFIG["__MF_DB"] # Firefox Browser's Bookmarks Database Path [NOT SUPPORTED]
+__IMPORT_GC = CONFIG["__IMPORT_GC"]
+__IMPORT_CR = CONFIG["__IMPORT_CR"]
+__IMPORT_MEDIUM = CONFIG["__IMPORT_MEDIUM"]
 
 def storeConfig():
     with open("config.json", "w") as fout:

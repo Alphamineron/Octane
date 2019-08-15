@@ -7,8 +7,11 @@
     "__CR_DB": "~/Library/Application Support/Chromium/Default/Bookmarks",
     "__MF_DB": "",
     "BROWSER_EXPORT_FILE": "./temp/browserExport.html",
-    "MEDIUM_DIR": "Dump/Data/medium-export/bookmarks/",
+    "MEDIUM_DIR": "Dump/Data/medium-export(1)/bookmarks/",
     "DATASET_URL": "alphamineron/medium-bookmarks",
     "USERCODE": "0000",
+    "__IMPORT_GC": true,
+    "__IMPORT_CR": true,
+    "__IMPORT_MEDIUM": true,
     "__CONFIGinit": true
 }
