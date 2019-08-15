@@ -83,6 +83,24 @@ class Chip(Primitive_Bookmark):
                     "status" : self.status,
                     "folders" : self.foldersStack
                 }
+    @staticmethod
+    def unserialize(dict):
+        chip = Chip()
+        chip.ID = dict["ID"]
+        chip.name = dict["name"]
+        chip.url = dict["url"]
+        chip.time = dict["time"]
+        chip.description = dict["description"]
+        chip.starred = dict["starred"]
+        chip.tags = dict["tags"]
+        chip.source = dict["source"]
+        chip.kind = dict["kind"]
+        chip.useCases = dict["UseCases"]
+        chip.topics = dict["topics"]
+        chip.phaseID = dict["phaseID"]
+        chip.status = dict["status"]
+        chip.foldersStack = dict["folders"]
+        return chip
 
 
 
