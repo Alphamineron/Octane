@@ -6,14 +6,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Tree menu</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
 		<link rel="stylesheet" href="dist/css/dragula.min.css">
 
-
-		<link rel="stylesheet" href="dist/css/style.min.css">
-		<link rel="stylesheet" href="dist/css/modal.css">
+		<link rel="stylesheet" href="Isolated_Features/css/card.css" />
 		<link rel="stylesheet" href="dist/css/sidebar.css">
+		<link rel="stylesheet" href="dist/css/modal.css">
+		<link rel="stylesheet" href="dist/css/style.min.css">
+
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 	</head>
 
 	<body>
@@ -67,14 +67,96 @@
 			<div id="page-content-wrapper">
 				<button class="toggle-button" id="menu-toggle"><i class="fa fa-bars"></i></button>
 
-				<h1>Page Content</h1>
+				<!-- <h1>Page Content</h1>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates rem porro ipsam odio ad! Fugiat totam eligendi ducimus repellendus hic? Voluptates vel laboriosam repellendus aperiam deleniti temporibus libero minus aspernatur. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio ipsum mollitia, iste magnam non placeat nisi autem? Officiis tempora quibusdam itaque temporibus sequi deleniti, accusantium rem corrupti iure incidunt? Reiciendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit dignissimos, ex ea, pariatur et cupiditate voluptates iste assumenda quod dolorum esse necessitatibus nihil excepturi deleniti consequuntur aliquid laboriosam, voluptas natus.</p>
-				<p>All page content should be within the <code>#page-content-wrapper</code>.</p>
+				<p>All page content should be within the <code>#page-content-wrapper</code>.</p> -->
+				<div id="myData"></div>
+				<div class="card-wrapper" id="card">
+
+					<div class="card--date">Completed 28/04/2019</div>
+					<div class="card--details">
+
+						<div class="card--details-left">
+
+							<div class="card--title">AWS Certified Cloud Practitioner</div>
+							<div class="card--attribute-wrapper show-on-mobile">
+								<div class="card--attribute card--attribute-1">
+									<span>13</span>
+									<span>hrs</span>
+								</div>
+
+								<span class="divider">•</span>
+
+								<div class="card--attribute card--attribute-2">
+									<span class="c-n700 heavy">AUD</span>
+									<span>99.00</span>
+								</div>
+							</div>
+
+						</div>
+						<div class="card--details-right">
+
+							<div class="card--attribute-wrapper hide-on-mobile">
+								<div class="card--attribute card--attribute-1">
+									<span>13</span>
+									<span>hrs</span>
+								</div>
+								<div class="card--attribute card--attribute-2">
+									<span class="c-n700 heavy">AUD</span>
+									<span>99.00</span>
+								</div>
+							</div>
+							<div class="card--icon card--menu-wrapper">
+
+								<button class="card--menu-button">
+									<i class="fa fa-ellipsis-v"></i>
+								</button>
+								<div class="card--menu-dropdown-wrapper" role="menu">
+									<ul class="card-menu">
+										<li class="card-menu--item" role="menuitem">
+											<a class="link link--edit" href="#">Menu1</a>
+										</li>
+										<li class="card-menu--item" role="menuitem">
+											<a class="link link--delete" href="#">Menu2</a>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+							<div class="card--icon card--chevron hide-on-mobile">
+								<i class="fa fa-chevron-down"></i>
+							</div>
+
+						</div>
+
+					</div>
+					<span class="card--brick brick-primary">AWS Certification</span>
+					<div class="card--custom-field-wrapper" id="custom-field">
+						<div class="custom-field--row">
+
+							<div class="custom-field--label">Training Provider</div>
+							<div class="custom-field--value">Amazon AWS</div>
+
+						</div>
+						<div class="custom-field--row">
+
+							<div class="custom-field--label">Training Provider</div>
+							<div class="custom-field--value">Amazon AWS</div>
+
+						</div>
+					</div>
+
+				</div>
 
 			</div>
 			<!-- /PAGE CONTENT -->
 		</div>
 
+		<script type="text/javascript" src="Isolated_Features/js/card.js"> </script>
+		<!-- <script type="text/javascript">
+			addEventListenerToCards()
+		</script> -->
+		<script type="text/javascript" src="Isolated_Features/js/cardRender.js"> </script>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="dist/js/dragula.min.js"></script>
