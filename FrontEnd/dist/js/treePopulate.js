@@ -1,6 +1,6 @@
 if (document.readyState == "loading")
-	document.addEventListener("DOMContentLoaded", ready);
-else ready();
+	document.addEventListener("DOMContentLoaded", treeReady);
+else treeReady();
 // =================================================================
 // 			Above Code Ensures that the JS isn't executed
 // 			In case the HTML hasn't been loaded as we are
@@ -11,12 +11,12 @@ else ready();
 //   var fetchTreeFromJSON = localStorage.getItem('fetchTreeFromJSON');
 //   var fetchTreeFromJSON = (fetchTreeFromJSON === 'true');   // Boolean Conversion of the localStorage returned value
 // }
-// else 
+// else
   var fetchTreeFromJSON = false;   // Flag for the Refresh Btn
 
 let folders;   // Global Variable
 
-function ready() {
+function treeReady() {
   if(treeStateAvailable() && !fetchTreeFromJSON) {
     folders = getTreeState();
     main();
@@ -91,7 +91,7 @@ function main() {
 
     var Containers = document.querySelectorAll("ul.tree, ul.tree ul.tree_child-list");
     Containers.forEach(container => {
-      drake.containers.push(container);      
+      drake.containers.push(container);
     });
 }
 
@@ -108,7 +108,7 @@ function refreshTree() {
               </li>
             </ul>
   `);
-  ready();
+  treeReady();
   addSidebarListeners();
   console.log("Refresh Finished");
 }

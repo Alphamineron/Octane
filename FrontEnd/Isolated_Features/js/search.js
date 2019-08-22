@@ -1,8 +1,8 @@
 // import {lunr} from 'node_modules/lunr/lunr.js';   // Requires Babel
 
 if (document.readyState == "loading")
-	document.addEventListener("DOMContentLoaded", ready);
-else ready();
+	document.addEventListener("DOMContentLoaded", searchReady);
+else searchReady();
 // =================================================================
 // 			Above Code Ensures that the JS isn't executed
 // 			In case the HTML hasn't been loaded as we are
@@ -14,7 +14,7 @@ let recentSearches = [];
 let idx;
 let fuse;
 
-function ready() {
+function searchReady() {
 	const endpoint = "../../data/chips.json";
 	// const endpoint = "res/people.json";   // (Path Relative to html files sourcing this script)
 	fetch(endpoint)

@@ -1,6 +1,6 @@
 if (document.readyState == "loading")
-	document.addEventListener("DOMContentLoaded", ready);
-else ready();
+	document.addEventListener("DOMContentLoaded", cardRenderReady);
+else cardRenderReady();
 // =================================================================
 // 			Above Code Ensures that the JS isn't executed
 // 			In case the HTML hasn't been loaded as we are
@@ -9,27 +9,31 @@ else ready();
 
 let chips = [];
 
-function ready() {
+function cardRenderReady() {
 	const endpoint = "../../data/chips.json";
 	// const endpoint = "res/people.json";   // (Path Relative to html files sourcing this script)
 	fetch(endpoint)
 	    .then(response => response.json())
 	    .then(function(data) {
 	        chips.push(...data);
-	        main();
+	        cardRenderMain();
 	    })
 	    .catch(err => console.log(err));
 
 }
 
-function main() {
+function cardRenderMain() {
     renderData(chips)
     addEventListenerToCards()
 }
 
 function renderData(data) {
     var mainContainer = document.getElementById("myData");
-    for (var i = 0; i < 200; i++) {
+
+	if(data.length > 50) var n_cards = 50;
+	else var n_cards = data.length;
+
+    for (var i = 0; i < 100; i++) {
         var div = document.createElement("div");
         div.innerHTML = `
     <div class="card-wrapper" id="${data[i].ID}">
@@ -69,7 +73,7 @@ function renderData(data) {
     			<div class="card--icon card--menu-wrapper">
 
     				<button class="card--menu-button">
-    					<i class="fas fa-ellipsis-v"></i>
+    					<i class="fa fa-ellipsis-v"></i>
     				</button>
     				<div class="card--menu-dropdown-wrapper" role="menu">
     					<ul class="card-menu">
@@ -84,7 +88,7 @@ function renderData(data) {
 
     			</div>
     			<div class="card--icon card--chevron hide-on-mobile">
-    				<i class="fas fa-chevron-down"></i>
+    				<i class="fa fa-chevron-down"></i>
     			</div>
 
     		</div>
