@@ -6,7 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
 body {
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 }
 
 .toggle-button {
@@ -64,7 +64,7 @@ body {
 }
 
 #page-content-wrapper {
-	width: 100%;
+	width: auto;
 	position: absolute;
 	padding: 15px;
 }
