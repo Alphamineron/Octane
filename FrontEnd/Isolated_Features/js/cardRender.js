@@ -33,7 +33,7 @@ function renderData(data) {
 	if(data.length > 50) var n_cards = 50;
 	else var n_cards = data.length;
 
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < n_cards; i++) {
         var div = document.createElement("div");
         div.innerHTML = `
     <div class="card-wrapper" id="${data[i].ID}">
