@@ -8,6 +8,7 @@ from utils.spinner import Spinner
 from config import __GC_DB, FOLDERTREE_JSON, USERCODE, PROJECT_NAME
 from dataChip import Chip, Primitive_Bookmark
 from ChipOps.dfh import JSON
+from utils.timeHandle import timestamp_from_webkit
 
 from treelib import Tree
 from treelib.exceptions import DuplicatedNodeIdError
@@ -155,6 +156,7 @@ def digJSONTree(sublist, foldersStack):
             p_bm = Primitive_Bookmark()
             p_bm.name = item["name"]
             p_bm.url = item["url"]
+            p_bm.time = timestamp_from_webkit(int(item["date_added"]))
             p_bm.foldersStack = foldersStack
             chip = Chip(p_bm)
 

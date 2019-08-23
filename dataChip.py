@@ -19,7 +19,7 @@ class Primitive_Bookmark(object):
     def show(self):
         init(autoreset = True)
         name = "\n" + Fore.WHITE + self.name + Fore.RESET
-        time = "\n| " + Fore.GREEN + self.time + Fore.RESET
+        time = "\n| " + Fore.GREEN + str(self.time) + Fore.RESET
         url = "\n>\t" + Fore.BLUE + self.url
         print(name + time + url)
         print("=========================================================\n")

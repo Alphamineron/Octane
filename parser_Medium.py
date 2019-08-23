@@ -2,6 +2,7 @@ from html.parser import HTMLParser
 import copy
 import codecs
 
+from utils.timeHandle import timestamp_from_MediumDate
 from dataChip import Primitive_Bookmark as MediumBookmark
 
 A_CLASS = "h-cite"
@@ -64,7 +65,7 @@ class MediumParser(HTMLParser):
         elif(self.tag == "time"):
             for attr in self.attrs:                                # -| OPTIONAL LINES: Adds
                 if(attr[0] == "class" and attr[1] == TIME_CLASS):  # -| Rigidness in Parsing
-                    MediumParser.mdm.time = data
+                    MediumParser.mdm.time = timestamp_from_MediumDate(data)
 
 
 
