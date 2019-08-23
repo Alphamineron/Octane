@@ -19,7 +19,7 @@ class TreeOctane(Tree):
 
     @staticmethod
     def to_JSON():
-        JSON.storeObjects(FOLDERTREE_JSON, jsonObj = json.loads(tree.to_json(with_data = True)))
+        JSON.storeObjects(FOLDERTREE_JSON, jsonObj = json.loads(tree.to_json(with_data = False)))
 
     # @Override
     def to_dict(self, nid=None, key=None, sort=True, reverse=False, with_data=False):
@@ -156,7 +156,7 @@ def digJSONTree(sublist, foldersStack):
             p_bm = Primitive_Bookmark()
             p_bm.name = item["name"]
             p_bm.url = item["url"]
-            p_bm.time = timestamp_from_webkit(int(item["date_added"]))
+            p_bm.date_added = timestamp_from_webkit(int(item["date_added"]))
             p_bm.foldersStack = foldersStack
             chip = Chip(p_bm)
 

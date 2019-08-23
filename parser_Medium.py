@@ -12,17 +12,17 @@ TIME_CLASS = "dt-published"
 #     def __init__(self):
 #         self.name = ""
 #         self.url = ""
-#         self.time = ""
+#         self.date_added = ""
 #
 #     def show(self):
-#         str = self.name + "\n| " + self.time + "\n\t" + self.url
+#         str = self.name + "\n| " + str(self.date_added) + "\n\t" + self.url
 #         print("\n=======================================")
 #         print(str)
 #
 #     def flush(self):
 #         self.name = ""
 #         self.url = ""
-#         self.time = ""
+#         self.date_added = ""
 
 class MediumParser(HTMLParser):
     mdm = MediumBookmark()  # For Internal Use Only
@@ -65,7 +65,7 @@ class MediumParser(HTMLParser):
         elif(self.tag == "time"):
             for attr in self.attrs:                                # -| OPTIONAL LINES: Adds
                 if(attr[0] == "class" and attr[1] == TIME_CLASS):  # -| Rigidness in Parsing
-                    MediumParser.mdm.time = timestamp_from_MediumDate(data)
+                    MediumParser.mdm.date_added = timestamp_from_MediumDate(data)
 
 
 

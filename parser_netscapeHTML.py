@@ -7,7 +7,7 @@ from dataChip import Primitive_Bookmark as WebBookmark
 #     def __init__(self):
 #         self.name = ""
 #         self.url = ""
-#         self.time = ""
+#         self.date_added = ""
 #
 #     def show(self):
 #         str = self.name + "\n|\t" + self.url
@@ -17,7 +17,7 @@ from dataChip import Primitive_Bookmark as WebBookmark
 #     def flush(self):
 #         self.name = ""
 #         self.url = ""
-#         self.time = ""
+#         self.date_added = ""
 
 class netscapeHTMLparser(HTMLParser):
     mdm = WebBookmark()  # For Internal Use Only
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     from tqdm import tqdm
     import argparse
     import sys
-    
+
     argparser = argparse.ArgumentParser(description="View basic details from a Netscape format Bookmarks File (Usually exported files from popular Browsers)")
     group = argparser.add_mutually_exclusive_group()
     group.add_argument("-i", "--input",

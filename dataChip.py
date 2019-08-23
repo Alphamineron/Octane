@@ -12,22 +12,22 @@ class Primitive_Bookmark(object):
     def __init__(self):
         self.name = ""
         self.url = ""
-        self.time = ""
+        self.date_added = ""
         self.source = []        # Is it from Medium? Is it from Youtube
         self.foldersStack = []
 
     def show(self):
         init(autoreset = True)
         name = "\n" + Fore.WHITE + self.name + Fore.RESET
-        time = "\n| " + Fore.GREEN + str(self.time) + Fore.RESET
+        date_added = "\n| " + Fore.GREEN + str(self.date_added) + Fore.RESET
         url = "\n>\t" + Fore.BLUE + self.url
-        print(name + time + url)
+        print(name + date_added + url)
         print("=========================================================\n")
 
     def flush(self):
         self.name = ""
         self.url = ""
-        self.time = ""
+        self.date_added = ""
         self.source = []
         self.foldersStack = []
 
@@ -62,7 +62,7 @@ class Chip(Primitive_Bookmark):
     def inherit(self, p_bm):
         self.name = p_bm.name
         self.url = p_bm.url
-        self.time = p_bm.time
+        self.date_added = p_bm.date_added
         self.source = copy.deepcopy(p_bm.source)
         self.foldersStack = copy.deepcopy(p_bm.foldersStack)
 
@@ -71,7 +71,7 @@ class Chip(Primitive_Bookmark):
                     "ID" : self.ID,
                     "name" : self.name,
                     "url" : self.url,
-                    "time" : self.time,
+                    "date_added" : self.date_added,
                     "description" : self.description,
                     "starred" : self.starred,
                     "tags" : self.tags,
@@ -89,7 +89,7 @@ class Chip(Primitive_Bookmark):
         chip.ID = dict["ID"]
         chip.name = dict["name"]
         chip.url = dict["url"]
-        chip.time = dict["time"]
+        chip.date_added = dict["date_added"]
         chip.description = dict["description"]
         chip.starred = dict["starred"]
         chip.tags = dict["tags"]
@@ -116,7 +116,7 @@ def generatePrimitiveBookmarks(limit):
         p_bm = Primitive_Bookmark()
         p_bm.name = "Test_" + str(i)
         p_bm.url = "https://www.test" + str(i) + ".com"
-        p_bm.time = "DateTimeObject_" + str(i)
+        p_bm.date_added = int("1547620945" + str(i))
         yield p_bm
 
 def test_inherit(limit, show=False):
