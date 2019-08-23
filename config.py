@@ -1,8 +1,36 @@
 import sys
 import os
 import json
-with open("config.json") as config_file:
-    CONFIG = json.load(config_file)
+
+reset_config = {
+    "PROJECT_NAME": "Octane",
+    "CHIPS_BIN": "data/chips.bin",
+    "CHIPS_JSON": "data/chips.json",
+    "FOLDERTREE_JSON": "data/folderTree.json",
+    "__GC_DB": "",
+    "__CR_DB": "",
+    "__MF_DB": "",
+    "BROWSER_EXPORT_FILE": "",
+    "MEDIUM_DIR": "",
+    "DATASET_URL": "",
+    "USERCODE": "0000",
+    "__IMPORT_GC": False,
+    "__IMPORT_CR": False,
+    "__IMPORT_MEDIUM": False,
+    "__CONFIGinit": False
+}
+
+def storeConfig():
+    with open("config.json", "w") as fout:
+        json.dump(CONFIG, fout, indent=4)
+
+try:
+    with open("config.json") as config_file:
+        CONFIG = json.load(config_file)
+except FileNotFoundError as e:
+    CONFIG = reset_config
+    storeConfig()
+
 
 PROJECT_NAME = CONFIG["PROJECT_NAME"]
 CHIPS_BIN = CONFIG["CHIPS_BIN"]
@@ -19,9 +47,6 @@ __IMPORT_GC = CONFIG["__IMPORT_GC"]
 __IMPORT_CR = CONFIG["__IMPORT_CR"]
 __IMPORT_MEDIUM = CONFIG["__IMPORT_MEDIUM"]
 
-def storeConfig():
-    with open("config.json", "w") as fout:
-        json.dump(CONFIG, fout, indent=4)
 
 def fetchDBPaths_Linux():
     CONFIG["__GC_DB"] = "~/.config/google-chrome/Default/Bookmarks"
@@ -54,34 +79,23 @@ def fetchDBPaths():
         print(("\nIf you believe that python is functional on your OS, Manually "
                 "enter the paths in config.json within the project repository"))
 
-reset_config = {
-    "PROJECT_NAME": "Octane",
-    "CHIPS_BIN": "data/chips.bin",
-    "CHIPS_JSON": "data/chips.json",
-    "FOLDERTREE_JSON": "data/folderTree.json",
-    "__GC_DB": "",
-    "__CR_DB": "",
-    "__MF_DB": "",
-    "BROWSER_EXPORT_FILE": "",
-    "MEDIUM_DIR": "",
-    "DATASET_URL": "",
-    "USERCODE": "0000",
-    "__CONFIGinit": False
-}
 
+def initCONFIG():
+    if CONFIG["__CONFIGinit"] == False:
+        try:
+            print("Initializing config.json")
+            fetchDBPaths()
+            # __CONFIGinit: Denotes whether the config file has been
+            #               initialized or not (To avoid undefined behaviour)
+            CONFIG["__CONFIGinit"] = True   # Default Value: FALSE
+            storeConfig()
+        except Exception as e:
+            CONFIG["__CONFIGinit"] = False
+            storeConfig()
+            raise e
+    else:
+        print("config.json already initialized!")
 
 
 if __name__ == '__main__':
-    try:
-        print("Initializing config.json")
-        fetchDBPaths()
-
-        # __CONFIGinit: Denotes whether the config file has been
-        #               initialized or not (To avoid undefined behaviour)
-        CONFIG["__CONFIGinit"] = True   # Default Value: FALSE
-        storeConfig()
-
-    except Exception as e:
-        CONFIG["__CONFIGinit"] = False
-        storeConfig()
-        raise e
+    initCONFIG()

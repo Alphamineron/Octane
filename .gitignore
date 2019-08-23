@@ -9,6 +9,7 @@ Dump/
 
 # Ignore Personal Info Files
 data/
+config.json
 
 # Ignore Temporary Output Files
 temp/
