@@ -2,6 +2,8 @@ import sys
 import os
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
+import pathlib
+
 # Imports for Data File Handling
 try: import cPickle as pickle
 except ModuleNotFoundError: import pickle
@@ -206,7 +208,8 @@ class JSON(object):
             if isinstance(chips[0], Chip):
                 chips = Verify_Data_Integrity(chips)
 
-        with open(filename, "w") as fout:
+        path = pathlib.Path(pathlib.Path.cwd(), filename)
+        with path.open("w") as fout:
             if iterable and objectsList is None:      # When a iterable is passed
                 json.dump(chips, fout, indent=4, default=JSON.encoder)
             elif objectsList and iterable is None:      # When a list of objects is passed
@@ -219,7 +222,8 @@ class JSON(object):
 
     @staticmethod
     def loadObjects(filename):
-        with open(filename, "r") as fin:
+        path = pathlib.Path(pathlib.Path.cwd(), filename)
+        with path.open() as fin:
             data = json.load(fin)
             return data
 

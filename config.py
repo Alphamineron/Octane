@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import pathlib
 
 reset_config = {
     "PROJECT_NAME": "Octane",
@@ -21,15 +22,23 @@ reset_config = {
 }
 
 def storeConfig():
-    with open("config.json", "w") as fout:
+    path = pathlib.Path("config.json")
+    with path.open("w") as fout:
         json.dump(CONFIG, fout, indent=4)
 
+
 try:
-    with open("config.json") as config_file:
+    path = pathlib.Path("config.json")
+    with path.open() as config_file:
         CONFIG = json.load(config_file)
 except FileNotFoundError as e:
     CONFIG = reset_config
     storeConfig()
+    path = pathlib.Path("config.json")
+    full_path = path.absolute()
+    my_path = full_path.as_posix()
+    print("\nConfig Created! \nEdit the config.json to your preferences \nFile Location -> " + my_path)
+    exit()
 
 
 PROJECT_NAME = CONFIG["PROJECT_NAME"]
