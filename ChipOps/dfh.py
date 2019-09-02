@@ -90,6 +90,8 @@ def get_menuCLI(newData, removedData, lenExistingData):
     return delete(removedData)
 
 def Verify_Data_Integrity(newData):
+    if not os.path.exists(CHIPS_JSON):
+        return newData
     oldData = JSON.loadObjects(CHIPS_JSON)  # Serialized Data in form of dict
     oldDataUn = []    # Unserialized Data in form of <class 'dataChip.Chip'> objects
     oLen = len(oldData)
