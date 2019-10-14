@@ -19,7 +19,7 @@ let folders;   // Global Variable
 function treeReady() {
   if(treeStateAvailable() && !fetchTreeFromJSON) {
     folders = getTreeState();
-    main();
+    initTree();
   }
   else {
     const endpoint = "../../data/folderTree.json";
@@ -27,7 +27,7 @@ function treeReady() {
         .then(response => response.json())
         .then(function(data) {
             folders = data;
-            main();
+            initTree();
             fetchTreeFromJSON = false;  // Flag for the Refresh Btn
         })
         .catch(err => console.log(err));
@@ -82,7 +82,7 @@ function populateTree(ele, parentFolderList = folders) {
   ele[0].append(li_addBtn);
 }
 
-function main() {
+function initTree() {
     var $tree = $("#tree");	  // If you need this comment, You gotta learn jQuery bud (At least Google it)...
     populateTree($tree);	// Sort of Obvious what this func does
 

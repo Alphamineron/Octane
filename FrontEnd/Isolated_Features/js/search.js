@@ -21,14 +21,13 @@ function searchReady() {
 	    .then(response => response.json())
 	    .then(function(data) {
 	        searchChips.push(...data);
-	        main();
+	        initSearch();
 	    })
 	    .catch(err => console.log(err));
-
 }
 
 
-function main() {
+function initSearch() {
     // buildIndex()
     build_fuseOptions()
 	// Sticking Event Listeners
