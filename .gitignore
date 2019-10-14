@@ -3,6 +3,8 @@
 .vscode/
 __pycache__/
 node_modules/
+.sass-cache/
+*.min.css.map
 
 # Ignore Discarded/Archived Files
 Dump/
