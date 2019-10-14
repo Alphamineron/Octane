@@ -9,7 +9,7 @@ else searchReady();
 // 			Using async
 // =================================================================
 
-let chips = [];
+let searchChips = [];
 let recentSearches = [];
 let idx;
 let fuse;
@@ -20,7 +20,7 @@ function searchReady() {
 	fetch(endpoint)
 	    .then(response => response.json())
 	    .then(function(data) {
-	        chips.push(...data);
+	        searchChips.push(...data);
 	        main();
 	    })
 	    .catch(err => console.log(err));
@@ -71,8 +71,11 @@ function renderSearchResults(resultChips) {
 		var div = document.createElement("div");  // Create HTML element to display a data item
 		div.innerHTML = `
 		  <!-- <span>${resultChips[i].source}</span> -->
-		  <a href="${resultChips[i].url}">${resultChips[i].name}</a>
+		  <img src="https://www.google.com/s2/favicons?domain=${resultChips[i].url}">
+		  <a class="search-result-title" href="${resultChips[i].url}">${resultChips[i].name}</a>
+		  <div class="search-result-link">${resultChips[i].url}<div>
 		`;
+		div.className += " search-results-card";
 		mainContainer.appendChild(div);  // Append each data item one after another
 	}
 }
@@ -90,7 +93,7 @@ function build_lunrIndex() {
 					this.field('name', { boost: 10 });
 					this.field('url');
 
-					chips.forEach(function (doc) { this.add(doc) }, this);
+					searchChips.forEach(function (doc) { this.add(doc) }, this);
 				});
 }
 
@@ -105,7 +108,7 @@ function lunrSearch() {
 	var results = idx.search(query);	// Perform Search Operation on index
 	var resultChips = [];
 	results.forEach(function(result) {	 // Fetch complete info on Search Results
-								chips.forEach(function(chip) {
+								searchChips.forEach(function(chip) {
 															if (chip["ID"] == result["ref"]) {
 																resultChips.push(chip);
 															}
@@ -131,7 +134,7 @@ function build_fuseOptions() {
                     weight: 0.9
                 }]
     };
-    fuse = new Fuse(chips, options)
+    fuse = new Fuse(searchChips, options)
 }
 
 function fuseSearch() {
