@@ -36,6 +36,20 @@ To setup this project on your machine for development, clone the repo as usual a
     pip install -r requirements.txt
 ```
 
+------------------------------------------------------------
+
+**For running the development server**, we'd be using BrowserSync. You can perform a global install by using the '-g' flag in the command.
+
+Here, we need Node.js so to check if you already have it, type `node -v` in your terminal. If you don't have Node.js then you need to install it from the [official site](https://nodejs.org/en/download/).
+
+```sh
+    cd Octane/FrontEnd*
+    npm install -g browser-sync
+    browser-sync start -s -f . --no-notify  --port 5000
+```
+
+------------------------------------------------------------
+
 **Colorama Download Instructions:** You may face an problem, when installing and using colorama through pip. This requires a manual fix. Download `.tar.gz` package for colorama from https://pypi.python.org/packages/source/c/colorama/colorama-0.3.3.tar.gz, extract it and run the following commands in the terminal.
 ```sh
     conda activate yourenvname
