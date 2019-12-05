@@ -1,0 +1,33 @@
+{
+  "name": "Octane",
+  "version": "0.0.0",
+  "description": "A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those who want to finally get some value from their heap of bookmarked/saved resources.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alphamineron/Octane.git"
+  },
+  "keywords": [],
+  "author": "Ankur Singh",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/Alphamineron/Octane/issues"
+  },
+  "homepage": "https://github.com/Alphamineron/Octane#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "nodemon": "^1.19.4"
+  }
+}
