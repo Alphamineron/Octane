@@ -157,14 +157,14 @@ $card-text-size: 1.4em;
 	&-folderpath {
 		display: block;
 		color: rgba(255, 255, 255, 0.2);
-		font-size: 1.2em;
+		font-size: 1.2rem;
 		font-weight: light;
 	}
 
 	&-date {
 		display: block;
 		color: rgba(255, 255, 255, 0.7);
-		font-size: 1.2em;
+		font-size: 1.2rem;
 		font-weight: 600;
 		margin: 1em;
 
@@ -179,8 +179,8 @@ $card-text-size: 1.4em;
 	&-title {
 		// font-family: Lato;
 		font-family: "Quantico", sans-serif;
-		font-size: 3.5em;
-		margin: 0.5em 0 2em;
+		font-size: 3.5rem;
+		margin: 0.5rem 0 2rem;
 		text-transform: uppercase;
 		color: #2ab2d6;
 	}
@@ -204,7 +204,7 @@ $card-text-size: 1.4em;
 		top: 0px;
 		right: 0px;
 
-		font-size: 2em;
+		font-size: 2rem;
 
 		color: white;
 		margin: 1em;
