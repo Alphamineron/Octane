@@ -43,8 +43,16 @@ html {
 	font-size: 62.5%;
 }
 
-.page-wrapper {
+body {
 	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+}
+
+.page-wrapper {
+	border-left: 1px solid red;
+	margin-left: 300px;
+	width: calc(100vw - 300px);
 	height: 100vh;
 	display: flex;
 	justify-content: center;
@@ -464,5 +472,14 @@ input.tag-input {
 	60%,
 	80% {
 		transform: translate3d(5px, 0, 0);
+	}
+}
+
+@media only screen and (max-width: 780px) {
+	.page-wrapper {
+		font-size: 5px;
+	}
+	.card {
+		background-color: red;
 	}
 }
