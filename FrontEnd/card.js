@@ -118,7 +118,9 @@ $(document).ready(function() {
 
 document.addEventListener("DOMContentLoaded", function(event) {
     tags = new Tags('.tagged');
-    tags.addTags(['Tag1', 'Tag2', 'Tag3']);
+	tags.addTags(['Tag1', 'Tag2', 'Tag3']);
+
+	$('.card-img').bind("click", addStar);
 });
 
 
@@ -126,5 +128,5 @@ function addStar(){
     this.classList.toggle('card-starred');
 }
 
-document.querySelector('.card-img').addEventListener('click', addStar );
+
 
