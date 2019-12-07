@@ -1,149 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-@import url("https://rsms.me/inter/inter.css");
-@import url("https://fonts.googleapis.com/css?family=Jura&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Quantico&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Monda:700&display=swap");
-
-*,
-*::before,
-*::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html {
-	font-family: "Roboto", sans-serif;
-	font-size: 10px;
-}
-
-.page-wrapper::after {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	content: "";
-	width: 100%;
-	height: 100%;
-	background: rgb(0, 66, 105);
-	background: radial-gradient(
-		circle,
-		rgba(0, 66, 105, 1) 0%,
-		rgba(0, 4, 47, 1) 100%
-	);
-}
-
-img {
-	width: 100%;
-}
-
-$card-margin-vertical: 30px;
-
-.card {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-
-	width: 100%;
-	max-width: 900px;
-	min-width: 600px;
-	padding: 3rem 5rem;
-	// margin: 0 auto .5rem;        // WHY IS THIS RUINING THE CARD'S CENTERING
-	margin: $card-margin-vertical auto $card-margin-vertical auto;
-	background-color: rgba(0, 66, 105, 0.4);
-	border-radius: 5px;
-	box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
-	display: flex;
-	align-items: center;
-}
-
-.card-img {
-	max-width: 25em;
-	min-width: 25em;
-	height: 20em;
-	transform: translateX(-10rem);
-	position: relative;
-}
-
-.card-img img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-	border-radius: 5px;
-	background: rgba(255, 255, 255, 0.2);
-	z-index: 10;
-}
-
-.card-img img::hover {
-}
-
-.starred::after {
-	content: "";
-	position: absolute;
-	top: -2%;
-	left: -2%;
-	z-index: -1;
-	width: 104%;
-	height: 104%;
-	background: radial-gradient(
-			ellipse farthest-corner at right bottom,
-			#fedb37 0%,
-			#fdb931 8%,
-			#9f7928 30%,
-			#8a6e2f 40%,
-			transparent 80%
-		),
-		radial-gradient(
-			ellipse farthest-corner at left top,
-			#ffffff 0%,
-			#ffffac 8%,
-			#d1b464 25%,
-			#5d4a1f 62.5%,
-			#5d4a1f 100%
-		);
-	border-radius: 5px;
-	box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.5);
-	transition: all 2s ease-in-out; // THIS DOESN'T SEEM TO BE WORKING
-}
-
-.card-info {
-	flex: 1 0 0px;
-	width: 100%;
-}
-
-.card-folderpath {
-	display: block;
-	color: rgba(255, 255, 255, 0.2);
-	font-size: 1.2rem;
-	font-weight: light;
-}
-
-.card-date {
-	display: block;
-	color: rgba(255, 255, 255, 0.7);
-	font-size: 1.2rem;
-	font-weight: 600;
-	margin: 1em;
-
-	position: absolute;
-	top: -32px;
-	left: 0;
-	// background-color: rgba(0,66,105,0.4);
-	padding: 0.3em 1em 0.4em 1em;
-	border-radius: 5px 5px 0 0;
-}
-
-.card-title {
-	// font-family: Lato;
-	font-family: "Quantico", sans-serif;
-	font-size: 3.5rem;
-	margin: 0.5rem 0 2rem;
-	text-transform: uppercase;
-	color: #2ab2d6;
-}
-
 /* mixin for multiline from http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation */
 @mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
 	overflow: hidden;
@@ -170,111 +24,276 @@ $card-margin-vertical: 30px;
 	}
 }
 
-.card-text {
-	// font-family: inter;
-	font-family: "Jura", sans-serif;
-	margin-bottom: 3rem;
-	font-size: 1.4rem;
-	color: rgba(255, 255, 255, 0.7);
-	@include multiLineEllipsis(
-		$lineHeight: 1em,
-		$lineCount: 10,
-		$bgColor: white
-	);
-	height: 3em;
-}
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://rsms.me/inter/inter.css");
+@import url("https://fonts.googleapis.com/css?family=Jura&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quantico&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Monda:700&display=swap");
 
-.card-btn {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-
-	font-size: 2rem;
-
-	color: white;
-	margin: 1em;
-	border-radius: 5px;
-}
-
-.card-btn:hover {
-	-webkit-box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
-	-moz-box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
-	box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
-}
-
-.card-menu {
-	display: none;
-	position: fixed;
-	z-index: 1000;
-	overflow: hidden;
-	// width: 120px;
+*,
+*::before,
+*::after {
+	margin: 0;
 	padding: 0;
-	background: #fff;
-	color: #fff;
-	background-color: rgba(0, 4, 47, 0.3);
-	border: 1px solid rgb(0, 59, 111);
-	border-radius: 2px;
-	box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
-	// transition: all 0.3s ease;
+	box-sizing: border-box;
+}
 
-	&-options {
-		padding: 10px 0;
-		z-index: 1000;
-	}
+html {
+	font-family: "Roboto", sans-serif;
+	font-size: 62.5%;
+}
 
-	&-option {
-		font-family: "Monda", sans-serif;
-		font-weight: heavy;
-		font-size: 1rem;
-		padding: 10px 40px 10px 20px;
-		cursor: pointer;
-		user-select: none;
+.page-wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 10px;
+}
 
-		&:hover {
+.page-wrapper::after {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	content: "";
+	width: 100%;
+	height: 100%;
+	background: rgb(0, 66, 105);
+	background: radial-gradient(
+		circle,
+		rgba(0, 66, 105, 1) 0%,
+		rgba(0, 4, 47, 1) 100%
+	);
+}
+
+img {
+	width: 100%;
+}
+
+// $card-height: 280px;
+$card-margin-vertical: 30px;
+$card-margin-horizontal: 75px;
+$card-padding-vertical: 3em;
+$card-padding-horizontal: 5em;
+$card-img-left-offset: -100px;
+$card-text-size: 1.4em;
+
+.card {
+	position: relative;
+	// top: 50%;
+	// left: 50%;
+	// transform: translate(-50%, -50%);
+
+	width: 100%;
+	max-width: 900px;
+	min-width: 400px;
+	height: auto;
+	padding: $card-padding-vertical $card-padding-horizontal;
+	// margin: 0 auto .5rem;        // WHY IS THIS RUINING THE CARD'S CENTERING
+	margin: $card-margin-vertical $card-margin-horizontal;
+	background-color: rgba(0, 66, 105, 0.4);
+	border-radius: 5px;
+	box-shadow: 0 1.4em 8em rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+
+	&-img {
+		max-width: 25em;
+		min-width: 25em;
+		height: 20em;
+		transform: translateX($card-img-left-offset);
+		position: relative;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			border-radius: 5px;
 			background: rgba(255, 255, 255, 0.2);
-		}
+			z-index: 10;
 
-		&-remove {
-			background: rgb(236, 41, 41);
-			color: rgb(255, 255, 255);
-
-			&:hover {
-				background: darken(rgb(236, 41, 41), 15%);
+			:hover {
 			}
 		}
 	}
+
+	&-starred::after {
+		content: "";
+		position: absolute;
+		top: -2%;
+		left: -2%;
+		z-index: -1;
+		width: 104%;
+		height: 104%;
+		background: radial-gradient(
+				ellipse farthest-corner at right bottom,
+				#fedb37 0%,
+				#fdb931 8%,
+				#9f7928 30%,
+				#8a6e2f 40%,
+				transparent 80%
+			),
+			radial-gradient(
+				ellipse farthest-corner at left top,
+				#ffffff 0%,
+				#ffffac 8%,
+				#d1b464 25%,
+				#5d4a1f 62.5%,
+				#5d4a1f 100%
+			);
+		border-radius: 5px;
+		box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.5);
+		transition: all 2s ease-in-out; // THIS DOESN'T SEEM TO BE WORKING
+	}
+
+	&-info {
+		flex: 1 0 0px;
+		width: 100%;
+	}
+
+	&-folderpath {
+		display: block;
+		color: rgba(255, 255, 255, 0.2);
+		font-size: 1.2em;
+		font-weight: light;
+	}
+
+	&-date {
+		display: block;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 1.2em;
+		font-weight: 600;
+		margin: 1em;
+
+		position: absolute;
+		top: -32px;
+		left: 0;
+		// background-color: rgba(0,66,105,0.4);
+		padding: 0.3em 1em 0.4em 1em;
+		border-radius: 5px 5px 0 0;
+	}
+
+	&-title {
+		// font-family: Lato;
+		font-family: "Quantico", sans-serif;
+		font-size: 3.5em;
+		margin: 0.5em 0 2em;
+		text-transform: uppercase;
+		color: #2ab2d6;
+	}
+
+	&-text {
+		// font-family: inter;
+		font-family: "Jura", sans-serif;
+		margin-bottom: 3em;
+		font-size: $card-text-size;
+		color: rgba(255, 255, 255, 0.7);
+		@include multiLineEllipsis(
+			$lineHeight: 1em,
+			$lineCount: 10,
+			$bgColor: white
+		);
+		height: 3em;
+	}
+
+	&-btn {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+
+		font-size: 2em;
+
+		color: white;
+		margin: 1em;
+		border-radius: 5px;
+	}
+
+	&-btn:hover {
+		-webkit-box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
+		-moz-box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
+		box-shadow: 0px 0px 28px 4px rgba(10, 190, 255, 0.84);
+	}
+
+	&-menu {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		overflow: hidden;
+		// width: 120px;
+		padding: 0;
+		background: #fff;
+		color: #fff;
+		background-color: rgba(0, 4, 47, 0.3);
+		border: 1px solid rgb(0, 59, 111);
+		border-radius: 2px;
+		box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+		// transition: all 0.3s ease;
+
+		&-options {
+			padding: 10px 0;
+			z-index: 1000;
+		}
+
+		&-option {
+			font-family: "Monda", sans-serif;
+			font-weight: heavy;
+			font-size: 1rem;
+			padding: 10px 40px 10px 20px;
+			cursor: pointer;
+			user-select: none;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			&-remove {
+				background: rgb(236, 41, 41);
+				color: rgb(255, 255, 255);
+
+				&:hover {
+					background: darken(rgb(236, 41, 41), 15%);
+				}
+			}
+		}
+	}
+
+	$Phase1-color: #ee4035;
+	$Phase2-color: #ffa700;
+	$Phase3-color: #29a8ab;
+	$Phase4-color: #d11141;
+
+	&-phase-line {
+		position: absolute;
+		top: calc(0px - #{$card-margin-vertical});
+		right: -40px;
+
+		width: 5px;
+		height: calc(100% + 2 * #{$card-margin-vertical});
+
+		background: $Phase3-color;
+		// border-radius: 20px;
+	}
+
+	$status-pending: #ff6f69;
+	$status-inProgress: #ffcc5c;
+	$status-completed: #88d8b0;
+	$status-line-height: 5px;
+
+	&-status-line {
+		position: relative;
+		top: calc(#{$card-padding-vertical} + #{$status-line-height});
+
+		width: auto;
+		height: $status-line-height;
+
+		background-color: $status-inProgress;
+		border-radius: 0 0 5px 5px;
+	}
 }
-
-$Phase1-color: #ee4035;
-$Phase2-color: #ffa700;
-$Phase3-color: #29a8ab;
-$Phase4-color: #d11141;
-
-.card-phase-line {
-	position: absolute;
-	top: calc(0px - #{$card-margin-vertical});
-	right: -40px;
-
-	width: 5px;
-	height: calc(100% + 2 * #{$card-margin-vertical});
-
-	background: $Phase3-color;
-	// border-radius: 20px;
-}
-
-$status-pending: #ff6f69;
-$status-inProgress: #ffcc5c;
-$status-completed: #88d8b0;
-
-.card-status-line {
-	position: relative;
-	top: 35px;
-
-	width: auto;
-	height: 5px;
-
-	background-color: $status-inProgress;
-	border-radius: 0 0 5px 5px;
+@media only screen and (max-width: 780px) {
 }
 
 .hide {
@@ -321,7 +340,7 @@ $exist-color: #edb5a1;
 $container-border: 0px solid #ccc;
 $container-bg: transparent;
 $container-line-height: 1.6;
-$container-font-size: 14px;
+$container-font-size: $card-text-size;
 $container-radius: 1px;
 $container-min-height: 34px;
 $container-padding: 2px 0px;
@@ -346,7 +365,7 @@ $spacer: 15px;
 
 	margin-bottom: $spacer;
 	width: 100%;
-	min-height: $container-min-height;
+	// min-height: $container-min-height;
 	padding: $container-padding;
 	font-size: $container-font-size;
 	line-height: $container-line-height;

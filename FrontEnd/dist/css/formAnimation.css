@@ -1,0 +1,92 @@
+:root {
+	--focusColor: #5fd693;
+	--placeholderColor: #687683;
+}
+
+.txtInput {
+	margin: 3em;
+	position: relative;
+}
+.txtBox {
+	width: 100%;
+	padding: 7px 10px;
+	border: none;
+	border-bottom: 2px solid white;
+	background: transparent;
+	color: white;
+	caret-color: var(--focusColor);
+	font-size: 1.2rem;
+	position: relative;
+}
+
+.txtBox:focus {
+	border-bottom: 2px solid var(--focusColor);
+	outline: 0;
+	transition: all 0.3s cubic-bezier(0.75, 0.25, 0.07, 0.95);
+}
+
+.txtArea {
+	width: 100%;
+	padding: 7px 10px;
+	border: 1px solid white;
+	border-radius: 5px;
+	background: transparent;
+	color: white;
+	caret-color: var(--focusColor);
+	font-size: 1.2rem;
+	position: relative;
+}
+
+.txtArea:focus {
+	border: 1px solid var(--focusColor);
+	outline: 0;
+	transition: all 0.3s cubic-bezier(0.75, 0.25, 0.07, 0.95);
+}
+
+.placeholder {
+	color: var(--placeholderColor);
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	pointer-events: none;
+	transition: all 0.3s cubic-bezier(0.75, 0.25, 0.07, 0.95);
+}
+
+.focused {
+	left: 0;
+	top: -15px;
+	font-size: 0.8rem;
+	color: var(--focusColor);
+}
+
+.txtArea + .focused {
+	left: 0px;
+	top: -25px;
+	font-size: 0.8rem;
+	color: var(--focusColor);
+}
+
+.urlIcon.focused {
+	border-bottom: 2px solid var(--focusColor);
+}
+
+.txtBox + .urlIcon.focused + .placeholder.focused {
+	top: -20px;
+	left: -62px;
+}
+
+.urlInput {
+	color: white;
+	margin-left: calc(3em + 66px);
+}
+
+.urlIcon {
+	position: absolute;
+	top: 0px;
+	left: -62px;
+	background-color: rgba(128, 128, 128, 0.2);
+	border-bottom: 2px solid white;
+	font-size: 0.9rem;
+	padding: 10px 8px 10px 15px;
+	border-radius: 3px 0px 0px 3px;
+}
