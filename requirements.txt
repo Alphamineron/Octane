@@ -1,4 +1,4 @@
-certifi==2019.6.16
+certifi==2022.12.7
 colorama==0.3.3
 prettytable==0.7.2
 treelib==1.5.5
