@@ -13,7 +13,11 @@ A Client-Side Resource Manager written using HTML, CSS, JS, and Python for those
 
 ![status-wip](https://img.shields.io/badge/Status-Work%20in%20Progress-red.svg) -->
 
+
+https://github.com/Alphamineron/Octane/assets/25489235/e609ba3d-db39-4ef4-a368-7623ead531e5
+
 ---
+![Screen Shot 2024-03-25 at 9 13 23 PM](https://github.com/Alphamineron/Octane/assets/25489235/e29c2ce1-b723-4480-bfbe-054a56682ba7)
 
 
 #### In Progress Tasks
